@@ -3,4 +3,6 @@ class Course < ApplicationRecord
 
   has_many :course_user_relationships, dependent: :destroy
   has_many :students, through: :course_user_relationships, source: :user
+
+  has_many :decks
 end

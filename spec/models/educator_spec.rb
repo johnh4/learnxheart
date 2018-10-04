@@ -9,4 +9,11 @@ RSpec.describe Educator, type: :model do
 
     expect(educator.students).to include student
   end
+
+  it "can have courses" do
+    educator = create(:educator)
+    expect {
+      educator.courses.create(attributes_for(:course))
+    }.to change(educator.courses, :count).by 1
+  end
 end

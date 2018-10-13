@@ -1,0 +1,7 @@
+before_script:
+  - psql -c 'create database learnxheart_test;' -U postgres
+language: ruby
+rvm:
+  - 2.5.0
+services:
+  - postgresql

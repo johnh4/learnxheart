@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   username: postgres
-  password: postgres
+  password:
   host: localhost
 
 development:

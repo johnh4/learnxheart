@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_04_225732) do
+ActiveRecord::Schema.define(version: 2018_10_19_222757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "card_student_relationships", force: :cascade do |t|
+    t.bigint "card_id"
+    t.bigint "student_id"
+    t.bigint "deck_id"
+    t.float "easiness"
+    t.integer "consecutive_correct_answers"
+    t.datetime "next_due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id", "deck_id"], name: "card_deck_index"
+    t.index ["card_id", "student_id"], name: "card_user_index"
+    t.index ["card_id"], name: "index_card_student_relationships_on_card_id"
+    t.index ["deck_id"], name: "index_card_student_relationships_on_deck_id"
+    t.index ["student_id"], name: "index_card_student_relationships_on_student_id"
+  end
 
   create_table "cards", force: :cascade do |t|
     t.bigint "deck_id"
@@ -27,13 +43,13 @@ ActiveRecord::Schema.define(version: 2018_10_04_225732) do
     t.index ["deck_id"], name: "index_cards_on_deck_id"
   end
 
-  create_table "course_user_relationships", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "course_student_relationships", force: :cascade do |t|
+    t.bigint "student_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_course_user_relationships_on_course_id"
-    t.index ["user_id"], name: "index_course_user_relationships_on_user_id"
+    t.index ["course_id"], name: "index_course_student_relationships_on_course_id"
+    t.index ["student_id"], name: "index_course_student_relationships_on_student_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -75,8 +91,11 @@ ActiveRecord::Schema.define(version: 2018_10_04_225732) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "card_student_relationships", "cards"
+  add_foreign_key "card_student_relationships", "decks"
+  add_foreign_key "card_student_relationships", "users", column: "student_id"
   add_foreign_key "cards", "decks"
-  add_foreign_key "course_user_relationships", "courses"
-  add_foreign_key "course_user_relationships", "users"
+  add_foreign_key "course_student_relationships", "courses"
+  add_foreign_key "course_student_relationships", "users", column: "student_id"
   add_foreign_key "decks", "courses"
 end

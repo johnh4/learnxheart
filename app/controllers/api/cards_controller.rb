@@ -11,6 +11,11 @@ class Api::CardsController < ApplicationController
   end
 
   def create
+    if @card.save
+      render json: @card, status: 201, location: [:api, @card]
+    else
+      render json: { errors: @card.errors }, status: 422
+    end
   end
 
   def update
@@ -24,6 +29,6 @@ class Api::CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:id, :front, :back, :easiness, :consecutive_correct_answers, :next_due_date)
+    params.require(:card).permit(:id, :deck_id, :front, :back, :easiness, :consecutive_correct_answers, :next_due_date)
   end
 end

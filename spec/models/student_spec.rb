@@ -10,5 +10,12 @@ RSpec.describe Student, type: :model do
 
       expect(student.educators).to include educator
     end
+
+    it "can have card_student_relationships" do
+      student = create(:student)
+      # expect(student).to be_instance_of(Student)
+      card_student_relationship = create(:card_student_relationship, student: student)
+      expect(student.card_student_relationships).to include card_student_relationship
+    end
   end
 end

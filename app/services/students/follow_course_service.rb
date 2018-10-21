@@ -9,7 +9,8 @@ module Students
     end
 
     def execute
-      CourseUserRelationship.create(user: student, course: course)
+      CourseStudentRelationship.create(student: student, course: course)
+      Courses::PopulateStudentCourseService.new(course, student).execute
     end
   end
 end

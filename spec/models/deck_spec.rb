@@ -14,5 +14,11 @@ RSpec.describe Deck, type: :model do
         deck.cards.create(attributes_for(:card))
       }.to change(deck.cards, :count).by 1
     end
+
+    it "can have card_student_relationships" do
+      deck = create(:deck)
+      card_student_relationship = create(:card_student_relationship, deck: deck)
+      expect(deck.card_student_relationships).to include card_student_relationship
+    end
   end
 end

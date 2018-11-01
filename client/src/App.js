@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List from './List';
+import Educators from './Educators';
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
@@ -19,6 +22,8 @@ class App extends Component {
           >
             Learn React
           </a>
+          <List />
+          <Educators />
         </header>
       </div>
     );

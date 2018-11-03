@@ -20,6 +20,24 @@ describe Authenticatable do
     end
   end
 
+  describe "#current_educator" do
+    it "returns the educator from the authorization header" do
+      educator = create(:educator)
+      request.headers["Authorization"] = educator.token
+      expect(authentication).to receive(:request).and_return(request)
+      expect(authentication.current_educator.token).to eql educator.token
+    end
+  end
+
+  describe "#current_student" do
+    it "returns the student from the authorization header" do
+      student = create(:student)
+      request.headers["Authorization"] = student.token
+      expect(authentication).to receive(:request).and_return(request)
+      expect(authentication.current_student.token).to eql student.token
+    end
+  end
+
   describe "#user_signed_in?" do
     it "is true when a user is signed in" do
       user = sign_in_user

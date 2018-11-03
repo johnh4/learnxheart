@@ -4,6 +4,14 @@ module Authenticatable
     @current_user ||= User.find_by(token: token)
   end
 
+  def current_educator
+    current_user if current_user.educator?
+  end
+
+  def current_student
+    current_user if current_user.student?
+  end
+
   def user_signed_in?
     current_user.present?
   end

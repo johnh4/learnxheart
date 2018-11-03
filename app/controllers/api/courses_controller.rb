@@ -12,7 +12,7 @@ class Api::CoursesController < ApplicationController
   end
 
   def create
-    @course.educator_id = current_user.id
+    @course.educator_id = current_educator.id
     if @course.save
       render json: @course, status: 201, location: [:api, @course]
     else

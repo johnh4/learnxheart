@@ -22,8 +22,8 @@ RSpec.describe Api::StudentsController, type: :controller do
                          student: { email: "newmail@example.com" } }
 
         student_response = json_response
-        expect(student_response[:email]).to eql "newmail@example.com"
         expect(response.status).to eq 200
+        expect(student_response[:email]).to eql "newmail@example.com"
       end
 
     end
@@ -32,8 +32,8 @@ RSpec.describe Api::StudentsController, type: :controller do
       it "renders an errors json" do
         student, student_response = setup_and_update_student
 
-        expect(student_response).to have_key(:errors)
         expect(response.status).to eq 422
+        expect(student_response).to have_key(:errors)
       end
 
       it "renders the json errors on why the user could not be created" do

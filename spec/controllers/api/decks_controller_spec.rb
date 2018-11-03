@@ -87,13 +87,13 @@ RSpec.describe Api::DecksController, type: :controller do
         it "updates then renders the deck" do
           deck, educator = create_deck_with_educator
           name = "New deck name"
-          sign_in educator
+          sign_in_educator educator
 
           patch :update, params: { id: deck.id, deck: { name: name } }
 
           deck_response = json_response
-          expect(deck_response[:name]).to eq name
           expect(response.status).to eq 200
+          expect(deck_response[:name]).to eq name
         end
       end
     end

@@ -4,11 +4,20 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "humps": "^2.0.1",
+    "normalizr": "^3.3.0",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "redux-devtools": "^3.4.1",
+    "redux-devtools-extension": "^2.13.5",
+    "sinon": "^7.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

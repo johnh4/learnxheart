@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   namespace :api, defaults: { format: :json } do
-    resources :educators, only: [:show, :create, :update, :destroy]
+    resources :educators, only: [:index, :show, :create, :update, :destroy]
     resources :students, only: [:show, :create, :update, :destroy]
 
     resources :courses, only: [:index, :create, :show, :update]

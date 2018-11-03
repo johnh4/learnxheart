@@ -2,6 +2,10 @@ class Api::EducatorsController < ApplicationController
   load_and_authorize_resource
   respond_to :json
 
+  def index
+    render json: @educators, status: 200
+  end
+
   def create
     if @educator.save
       render json: @educator, status: 201, location: [:api, @educator]

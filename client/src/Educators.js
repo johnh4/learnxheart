@@ -3,7 +3,9 @@ import './App.css';
 import { connect } from 'react-redux';
 import { selectThing, toggleSelect } from './reducers/views';
 import { loadEducatorsRequest, loadEducatorRequest } from './actions/educators';
+import { signInRequest, signOutRequest } from './actions/sessions';
 import { getEducators, getEducatorIds } from './reducers/educators';
+import { currentUser, userSignedIn } from './reducers/sessions';
 
 class Educators extends Component {
   componentDidMount() {
@@ -16,6 +18,15 @@ class Educators extends Component {
 
   handleGetEducator = () => {
     this.getEducator("1");
+  }
+
+  handleSignIn = () => {
+    this.props.signInRequest("jehowl4+educator@gmail.com", "password");
+  }
+
+  handleSignOut = () => {
+    const { currentUser, signOutRequest } = this.props;
+    signOutRequest(currentUser);
   }
 
   async getEducators() {
@@ -52,10 +63,28 @@ class Educators extends Component {
   }
 
   render() {
-    const { educatorIds } = this.props;
+    const { educatorIds, currentUser, userSignedIn } = this.props;
 
     return (
       <div>
+        <div onClick={this.handleSignIn}>
+          { !userSignedIn &&
+            <span>Sign in</span>
+          }
+        </div>
+        <div>
+          { userSignedIn &&
+            <span onClick={this.handleSignOut}>Sign Out</span>
+          }
+        </div>
+        <div>
+          { !userSignedIn
+              ? <div>Not signed in.</div>
+              : <div>
+                  Signed in as {`${currentUser.firstName} ${currentUser.lastName}`}.
+                </div>
+          }
+        </div>
         <div onClick={this.handleGetEducators}>
           Get Educators
         </div>
@@ -76,12 +105,16 @@ class Educators extends Component {
 const mapStateToProps = (state) => ({
   selected: state.views.selected,
   educators: getEducators(state),
-  educatorIds: getEducatorIds(state)
+  educatorIds: getEducatorIds(state),
+  currentUser: currentUser(state),
+  userSignedIn: userSignedIn(state)
 });
 
 export default connect(mapStateToProps, {
   selectThing,
   toggleSelect,
   loadEducatorsRequest,
-  loadEducatorRequest
+  loadEducatorRequest,
+  signInRequest,
+  signOutRequest
 })(Educators);

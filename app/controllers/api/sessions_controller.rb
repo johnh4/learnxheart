@@ -1,4 +1,6 @@
 class Api::SessionsController < ApplicationController
+  authorize_resource class: false
+
   def create
     user_password = params[:session][:password]
     user_email = params[:session][:email]

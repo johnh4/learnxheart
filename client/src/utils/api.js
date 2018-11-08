@@ -1,7 +1,7 @@
 import { camelizeKeys } from 'humps'
 import { schema, normalize } from 'normalizr'
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3001";
 
 /**
  * Make a post request given parameters
@@ -10,25 +10,50 @@ const baseUrl = "http://localhost:3000";
  * @param  {string} objectName    The root object for the rails model
  * @param  {object} object        The attributes for the post request's object
  * @param  {object} requestSchema The schema that corresponds to the resource that we're getting
+ * @param {string} token          The currentUser's auth token
  *
  * @return {object} response      The response from the server
  */
-export function post(path, objectName, object, requestSchema) {
+export function post(path, objectName, object, requestSchema, token = null) {
   const payload = {
     [objectName]: object
   }
   const serializedPayload = JSON.stringify(payload);
 
-  const options = generateOptionsForPost(serializedPayload);
-  const url = `${baseUrl}${path}`
+  let options;
+  if (!!token) {
+    options = generateOptionsForPost(serializedPayload);
+  } else {
+    options = generateOptionsForPostWithToken(serializedPayload);
+  }
 
+  const url = `${baseUrl}${path}`
   const response = request(url, requestSchema, options);
+
   return response;
 }
 
 /**
  * Generate options for a post request
- * @return {string} json        JSON for the object that we're posting
+ * @param {string} json        JSON for the object that we're posting
+ * @param {string} token       The currentUser's auth token
+ * @return {object}            a header object
+ */
+export function generateOptionsForPostWithToken(json, token) {
+  return {
+    method: 'post',
+    body: json,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `${token}`
+    })
+  }
+}
+
+/**
+ * Generate options for a post request
+ * @param {string} json        JSON for the object that we're posting
  * @return {object}             a header object
  */
 export function generateOptionsForPost(json) {
@@ -38,6 +63,57 @@ export function generateOptionsForPost(json) {
     headers: new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
+    })
+  }
+}
+
+/**
+ * Make a delete request given parameters
+ *
+ * @param  {string} path          The URL we want to request
+ * @param  {string} objectName    The root object for the rails model
+ * @param  {object} object        The attributes for the post request's object
+ * @param  {object} requestSchema The schema that corresponds to the resource that we're getting
+ * @param {string} token          The currentUser's auth token
+ *
+ * @return {object} response      The response from the server
+ */
+export function destroy(path, objectName, object, requestSchema, token) {
+  const payload = {
+    [objectName]: object
+  }
+  const serializedPayload = JSON.stringify(payload);
+  const options = generateOptionsForDelete(serializedPayload, token);
+  const url = `${baseUrl}${path}`
+  const response = request(url, requestSchema, options);
+  return response;
+}
+
+export function signOutApiRequest(path, object, token) {
+  const payload = {
+    'session': object
+  };
+  const serializedPayload = JSON.stringify(payload);
+  const options = generateOptionsForDelete(serializedPayload, token);
+  const url = `${baseUrl}${path}`;
+  return fetch(url, options)
+    .then(checkStatus)
+}
+
+/**
+ * Generate options for a delete request
+ * @param {string} json        JSON for the object that we're posting
+ * @param {string} token       The currentUser's auth token
+ * @return {object}            a header object
+ */
+export function generateOptionsForDelete(json, token) {
+  return {
+    method: 'delete',
+    body: json,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `${token}`
     })
   }
 }

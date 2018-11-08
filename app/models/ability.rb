@@ -4,11 +4,13 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     can :read, Educator
+    can :create, :session
     if user.present?
       can :read, Student
       can :read, Course
       can :read, Deck
       can :read, Card
+      can :destroy, :session
       if user.educator?
         can :manage, Educator, id: user.id
         can :manage, Course, educator_id: user.id

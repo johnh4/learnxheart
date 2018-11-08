@@ -99,16 +99,6 @@ RSpec.describe Api::CardsController, type: :controller do
         expect(response.status).to eq 200
       end
     end
-
-    xcontext "for a failed update" do
-      it "renders errors" do
-        #TODO: use a condition that fails validation
-
-        card_response = json_response
-        expect(card_response).to have_key(:errors)
-        expect(response.status).to eq 422
-      end
-    end
   end
 
   def card_ids_from_response cards_response

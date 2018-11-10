@@ -1,10 +1,5 @@
 import { call, put, take, takeEvery } from 'redux-saga/effects';
-// import { takeLatest } from 'redux-saga'
-// import {BEGIN, COMMIT, REVERT} from 'redux-optimistic-ui';
-// import { decamelizeKeys } from "humps"
-
 import { get } from '../utils/api';
-// import request from '../utils/api';
 import * as actions from '../actions/educators';
 import { apiError } from '../actions/views';
 import { constants } from '../actions/educators';
@@ -33,7 +28,7 @@ export function* loadEducatorFlow(educatorId) {
     const educator = entities.educators;
     yield put(actions.loadEducatorsSuccess(educator));
   } catch (error) {
-    yield put(apiError(error.message));
+    yield put(apiError(error));
   }
 }
 
@@ -52,7 +47,7 @@ export function* loadEducatorsFlow() {
     const educators = entities.educators;
     yield put(actions.loadEducatorsSuccess(educators));
   } catch (error) {
-    yield put(apiError(error.message));
+    yield put(apiError(error));
   }
 }
 

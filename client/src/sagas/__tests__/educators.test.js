@@ -1,13 +1,18 @@
 import { getEducators } from '../../reducers/educators';
 import * as actions from '../../actions/educators';
 import configureStore from '../../store/configureStore';
-import { mockResponse, setupStoreAndMockFetch } from '../../utils/mockResponse';
+import { mockResponse, setupStoreAndMockFetch } from '../../utils/testUtils';
+import axios from 'axios';
+
+jest.mock('axios');
 
 describe("loadEducatorsFlow", function() {
   it("adds fetched educators to state when api call is successful", done => {
     // setup the test
     const educators = [{ id: 1 }, { id: 2 }];
-    const store = setupStoreAndMockFetch(educators);
+    const response = { data: educators }
+    const store = configureStore();
+    axios.mockReturnValue(new Promise(resolve => resolve(response)));
 
     // execute the test by triggering the watcher saga
     store.dispatch(actions.loadEducatorsRequest());
@@ -24,8 +29,7 @@ describe("loadEducatorsFlow", function() {
   it("dispatches api error when the api errors", done => {
     // setup the test
     const store = configureStore();
-    const mockedResponse = Promise.resolve(mockResponse(404, "Not Found", []));
-    spyOn(window, "fetch").and.returnValue(mockedResponse);
+    axios.mockReturnValue(new Promise((resolve, reject) => reject('Not Found')));
 
     // execute the test by triggering the watcher saga
     store.dispatch(actions.loadEducatorsRequest());

@@ -1,0 +1,64 @@
+@import "../../components/App/variables.scss";
+
+.App__header {
+  padding: 30px 45px;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0, 0.50);
+  font-size: 17px;
+  color: $dark-text-color;
+
+  &__brand {
+    display: flex;
+    font-weight: bold;
+  }
+  .Header__brand {
+    flex: 1 1 auto;
+    letter-spacing: 1.03;
+  }
+
+  .Header__nav {
+    margin: 0px;
+    padding: 0px;
+    flex: 3 1 auto;
+  }
+
+  .Header__session {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+  }
+  .Header__user-details {
+  }
+  .Header__icon {
+    margin-right: 15px;
+  }
+  .Header__user-name {
+    margin-right: 15px;
+  }
+}
+
+.Nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+
+  .Nav__item {
+    justify-content: space-between;
+  }
+  .Nav__icon {
+    margin-right: 15px;
+  }
+  .Nav__link {}
+}
+
+.Link {
+  text-decoration: none;
+  color: $dark-text-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}

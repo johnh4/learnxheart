@@ -6,11 +6,12 @@ import {
   SIGN_OUT_SUCCESS
 } from '../constants/sessions';
 
-export const signInRequest = (email, password) => {
+export const signInRequest = (email, password, setSubmitting = () => {}) => {
   return {
     type: SIGN_IN_REQUEST,
     email,
-    password
+    password,
+    setSubmitting
   }
 }
 

@@ -1,5 +1,6 @@
-import { camelizeKeys } from 'humps'
-import { schema, normalize } from 'normalizr'
+import axios from 'axios';
+import { camelizeKeys } from 'humps';
+import { schema, normalize } from 'normalizr';
 
 const baseUrl = "http://localhost:3001";
 
@@ -18,13 +19,12 @@ export function post(path, objectName, object, requestSchema, token = null) {
   const payload = {
     [objectName]: object
   }
-  const serializedPayload = JSON.stringify(payload);
 
   let options;
   if (!!token) {
-    options = generateOptionsForPost(serializedPayload);
+    options = generateOptionsForPostWithToken(payload);
   } else {
-    options = generateOptionsForPostWithToken(serializedPayload);
+    options = generateOptionsForPost(payload);
   }
 
   const url = `${baseUrl}${path}`
@@ -42,12 +42,12 @@ export function post(path, objectName, object, requestSchema, token = null) {
 export function generateOptionsForPostWithToken(json, token) {
   return {
     method: 'post',
-    body: json,
-    headers: new Headers({
+    data: json,
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': `${token}`
-    })
+    }
   }
 }
 
@@ -59,11 +59,11 @@ export function generateOptionsForPostWithToken(json, token) {
 export function generateOptionsForPost(json) {
   return {
     method: 'post',
-    body: json,
-    headers: new Headers({
+    data: json,
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-    })
+    }
   }
 }
 
@@ -93,11 +93,11 @@ export function signOutApiRequest(path, object, token) {
   const payload = {
     'session': object
   };
-  const serializedPayload = JSON.stringify(payload);
-  const options = generateOptionsForDelete(serializedPayload, token);
+  const options = generateOptionsForDelete(payload, token);
   const url = `${baseUrl}${path}`;
-  return fetch(url, options)
-    .then(checkStatus)
+  return axios({url, ...options})
+    .then(res => res)
+    .catch(handleError);
 }
 
 /**
@@ -109,12 +109,12 @@ export function signOutApiRequest(path, object, token) {
 export function generateOptionsForDelete(json, token) {
   return {
     method: 'delete',
-    body: json,
-    headers: new Headers({
+    data: json,
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': `${token}`
-    })
+    }
   }
 }
  
@@ -122,15 +122,15 @@ export function generateOptionsForDelete(json, token) {
  * Make a get request given parameters
  *
  * @param  {string} path          The URL we want to request
- * @param  {object} requestSchema The schema that corresponds to the resource that we're getting
+ * @param  {Schema} requestSchema The schema that corresponds to the resource that we're getting
  *
  * @return {object} response      The response from the server
  */
 export function get(path, requestSchema) {
-  // const options = generateOptionsForGet()
   const url = `${baseUrl}${path}`
 
-  const response = request(url, requestSchema)
+  const options = generateOptionsForGet();
+  const response = request(url, requestSchema, options);
   return response
 }
 
@@ -142,38 +142,82 @@ export function get(path, requestSchema) {
 export function generateOptionsForGet() {
   return {
     method: 'get',
-    headers: new Headers({
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-    })
+    }
   }
 }
 
 /**
  * Requests a URL, returning a promise
  *
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
+ * @param  {string} url           The URL we want to request
+ * @param  {object} requestSchema The schema that the response will use
+ * @param  {object} [options]     The options we want to pass to "fetch"
  *
  * @return {object}           An object containing either "json" or "err"
  */
 export function request(url, requestSchema, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
+  return axios({ url, ...options})
+    .then(extractData)
     .then(camelizeJson)
-    .then(res => normalize(res, requestSchema))
+    .then(res => normalizeResponse(res, requestSchema))
+    .catch(handleError);
 }
 
 /**
- * Parses the JSON returned by a network request
- *
- * @param  {object} response A response from a network request
- *
- * @return {object}          The parsed JSON from the request
+ * Normalize the response with the correct schema
+ * 
+ * @param {object} response      The current processed response
+ * @param {Schema} requestSchema The schema passed in with the request
+ * @return {object}              The normalized response
  */
-function parseJSON(response) {
-  return response.json();
+function normalizeResponse(response, requestSchema) {
+  // console.log("response", response);
+  const schema = setSchema(response, requestSchema);
+  // console.log("schema", schema);
+  const normalized = normalize(response, schema);
+  return normalized;
+}
+
+/**
+ * Determine the correct schema to normalize the response with
+ * 
+ * @param {object} response      The processed request response
+ * @param {Schema} requestSchema The schema passed into the request function
+ * @return {Schema}              The schema that should be used to normalize the request  
+ */
+function setSchema(response, requestSchema) {
+  let schema = requestSchema;
+  if (requestSchema === userSchema) {
+    if (response.type === "Student") {
+      schema = studentSchema;
+    } else if (response.type === "Educator") {
+      schema = educatorSchema;
+    }
+  }
+  return schema;
+}
+
+/**
+ * Throw when there's an error
+ *
+ * @param  {string} error     An error from the server
+ */
+function handleError(error) {
+  const err = new Error(error);
+  throw err.message;
+}
+
+/**
+ * Extract the data from the response
+ * 
+ * @param {object} response The raw api response
+ * @return {object}         The response data
+ */
+function extractData(response) {
+  return response.data;
 }
 
 /**
@@ -184,30 +228,14 @@ function parseJSON(response) {
  * @return {object} json    JSON w/ camelized keys
  */
 function camelizeJson(json) {
-  // console.log("json", json);
   return camelizeKeys(json)
-}
-
-/**
- * Checks if a network request came back fine, and throws an error if not
- *
- * @param  {object} response   A response from a network request
- *
- * @return {object|undefined} Returns either the response, or throws an error
- */
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
 }
 
 /** Schemas **/
 
+export const userSchema = new schema.Entity('users');
 export const educatorSchema = new schema.Entity('educators');
+export const studentSchema = new schema.Entity('students');
 export const courseSchema = new schema.Entity('courses');
 
 educatorSchema.define({

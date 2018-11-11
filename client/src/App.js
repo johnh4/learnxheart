@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import List from './List';
 import Educators from './Educators';
+import { Link, Router, navigate } from '@reach/router';
 
 class App extends Component {
 

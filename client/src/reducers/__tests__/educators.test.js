@@ -9,7 +9,8 @@ describe('educatorsReducer', () => {
     const educator = { id: educatorId, email: "test@example.com" };
     const educator2 = { id: educator2Id, email: "test2@example.com" };
     const educators = { [educatorId]: educator, [educator2Id]: educator2 };
-    const action = actions.loadEducatorsSuccess(educators);
+    const entities = { educators };
+    const action = actions.loadEducatorsSuccess(entities);
 
     let newState = educatorsReducer(initialState, action);
 
@@ -22,7 +23,8 @@ describe('educatorsReducer', () => {
     const educatorId = 1;
     const educator = { id: educatorId, email: "test@example.com" };
     const educators = { [educatorId]: educator };
-    const action = actions.loadEducatorsSuccess(educators);
+    const entities = { educators };
+    const action = actions.loadEducatorsSuccess(entities);
 
     let newState = educatorsReducer(initialState, action);
 

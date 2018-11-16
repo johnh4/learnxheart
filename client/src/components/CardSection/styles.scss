@@ -1,0 +1,14 @@
+.CardSection {
+  .CardSection__cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .CardSection__card {
+    align-self: flex-start;
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.CardSection__headline {
+}

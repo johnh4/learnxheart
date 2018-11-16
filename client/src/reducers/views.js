@@ -1,8 +1,16 @@
-import { API_ERROR } from '../actions/views';
+import uniq from 'lodash/uniq';
+import {
+  API_ERROR,
+  ADD_COURSE_FILTER,
+  REMOVE_COURSE_FILTER
+} from '../constants/views';
 export const SELECT = 'learnxheart/select';
 export const TOGGLE = 'learnxheart/toggle';
 
 const initialState = {
+  filters: {
+    courses: []
+  },
   selected: false,
   error: ''
 };
@@ -24,6 +32,24 @@ export default function(state = initialState, action) {
         ...state,
         error: action.error
       }
+    case ADD_COURSE_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          courses: uniq([...state.filters.courses, action.filter])
+        }
+      }
+    case REMOVE_COURSE_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          courses: state.filters.courses.filter(
+            filter => (filter !== action.filter)
+          )
+        }
+      }
     default:
       return state;
   }
@@ -31,8 +57,8 @@ export default function(state = initialState, action) {
 
 export const selectThing = () => ({
   type: SELECT
-})
+});
 
 export const toggleSelect = () => ({
   type: TOGGLE
-})
+});

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { camelizeKeys } from 'humps';
+import { camelizeKeys, decamelizeKeys } from 'humps';
 import { schema, normalize } from 'normalizr';
 
 const baseUrl = "http://localhost:3001";
@@ -11,23 +11,24 @@ const baseUrl = "http://localhost:3001";
  * @param  {string} objectName    The root object for the rails model
  * @param  {object} object        The attributes for the post request's object
  * @param  {object} requestSchema The schema that corresponds to the resource that we're getting
- * @param {string} token          The currentUser's auth token
+ * @param  {string} token         The currentUser's auth token
  *
  * @return {object} response      The response from the server
  */
 export function post(path, objectName, object, requestSchema, token = null) {
+  const decamelizedObj = decamelizeKeys(object);
   const payload = {
-    [objectName]: object
+    [objectName]: decamelizedObj
   }
 
   let options;
   if (!!token) {
-    options = generateOptionsForPostWithToken(payload);
+    options = generateOptionsForPostWithToken(payload, token);
   } else {
     options = generateOptionsForPost(payload);
   }
 
-  const url = `${baseUrl}${path}`
+  const url = `${baseUrl}${path}`;
   const response = request(url, requestSchema, options);
 
   return response;
@@ -71,30 +72,13 @@ export function generateOptionsForPost(json) {
  * Make a delete request given parameters
  *
  * @param  {string} path          The URL we want to request
- * @param  {string} objectName    The root object for the rails model
- * @param  {object} object        The attributes for the post request's object
- * @param  {object} requestSchema The schema that corresponds to the resource that we're getting
  * @param {string} token          The currentUser's auth token
  *
  * @return {object} response      The response from the server
  */
-export function destroy(path, objectName, object, requestSchema, token) {
-  const payload = {
-    [objectName]: object
-  }
-  const serializedPayload = JSON.stringify(payload);
-  const options = generateOptionsForDelete(serializedPayload, token);
+export function destroy(path, token) {
+  const options = generateOptionsForDelete(token);
   const url = `${baseUrl}${path}`
-  const response = request(url, requestSchema, options);
-  return response;
-}
-
-export function signOutApiRequest(path, object, token) {
-  const payload = {
-    'session': object
-  };
-  const options = generateOptionsForDelete(payload, token);
-  const url = `${baseUrl}${path}`;
   return axios({url, ...options})
     .then(res => res)
     .catch(handleError);
@@ -102,14 +86,12 @@ export function signOutApiRequest(path, object, token) {
 
 /**
  * Generate options for a delete request
- * @param {string} json        JSON for the object that we're posting
  * @param {string} token       The currentUser's auth token
  * @return {object}            a header object
  */
-export function generateOptionsForDelete(json, token) {
+export function generateOptionsForDelete(token) {
   return {
     method: 'delete',
-    data: json,
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -237,11 +219,13 @@ export const userSchema = new schema.Entity('users');
 export const educatorSchema = new schema.Entity('educators');
 export const studentSchema = new schema.Entity('students');
 export const courseSchema = new schema.Entity('courses');
+export const courseStudentRelationshipsSchema = new schema.Entity('courseStudentRelationships');
 
 educatorSchema.define({
   courses: [courseSchema]
 });
 
 courseSchema.define({
-  educator: [educatorSchema]
+  educator: educatorSchema,
+  courseStudentRelationships: [courseStudentRelationshipsSchema]
 });

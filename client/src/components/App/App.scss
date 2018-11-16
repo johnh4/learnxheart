@@ -1,7 +1,11 @@
 .App {
-  text-align: center;
   min-height: 100vh;
   font-family: 'Montserrat';
+  background-attachment: fixed;
+
+  .App__header {
+    padding: 30px 45px;
+  }
 
   .App__container {
     padding: 40px 45px;

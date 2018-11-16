@@ -14,8 +14,7 @@ import {
   studentSignedIn,
   currentUser,
   currentUserName
-} from '../../reducers/sessions';
-import App from '../../components/App';
+} from '../../selectors/sessions';
 
 export function Header(props) {
   const {
@@ -25,7 +24,7 @@ export function Header(props) {
     studentSignedIn,
     educatorSignedIn
   } = props;
-  let { className } = props;
+  let { classes } = props;
 
   const handleSignOut = () => {
     signOutRequest(currentUser);
@@ -58,10 +57,8 @@ export function Header(props) {
     )
   }
 
-  className = className || "";
-
   return (
-    <header className={`Header ${className}`} data-testid='header'>
+    <header className={`Header ${classes}`} data-testid='header'>
       <div className='Header__brand'>
         <Link to='/' className='Link'>Learn X Heart</Link>
       </div>
@@ -117,7 +114,8 @@ Header.defaultProps = {
   educatorSignedIn: false,
   studentSignedIn: false,
   currentUserName: null,
-  currentUser: null
+  currentUser: null,
+  classes: ""
 }
 
 const mapStateToProps = (state) => ({

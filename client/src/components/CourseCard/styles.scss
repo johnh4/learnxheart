@@ -1,0 +1,108 @@
+@import '../App/variables.scss';
+
+.CourseCard {
+  display: flex;
+  justify-content: space-between;
+}
+.CourseCard__main:hover, .CourseCard__description:hover, .CourseCard__toggle:hover {
+  cursor: pointer;
+}
+
+.CourseCard__main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.CourseCard__names {
+  display: flex;
+  flex-direction: column;
+}
+.CourseCard__name {
+  font-weight: bold;
+}
+
+.CourseCard__details {
+  display: flex;
+  justify-content: space-between;
+}
+.CourseCard__icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.CourseCard__numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 6px;
+}
+.CourseCard__number {
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.CourseCard__decks {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.CourseCard__students {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.CourseCard__description {
+  padding-top: 12px;
+  padding-bottom: 15px;
+}
+.CourseCard__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.CourseCard__expanded-area {
+  display: none;
+}
+
+.CourseCard__expanded-area.CourseCard__expanded-area_expanded {
+  display: block;
+}
+
+.CourseCard__toggle {
+  display: flex;
+  justify-content: center;
+}
+
+.ui.popup {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  letter-spacing: 0.57px;
+  border-radius: 27px;
+
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+  border: none;
+  background-color: $dark-blue-color-translucent;
+  color: white;
+}
+.ui.popup:before, .ui.top.popup:before, .ui.bottom.popup:before, .ui.bottom.right.popup:before {
+  box-shadow: none;
+  background-color: $dark-blue-color-translucent;
+  border: none;
+}
+.ui.top.popup:before, .ui.top.left.popup:before,
+.ui.bottom.popup:before, .ui.bottom.left.popup:before  {
+  bottom: -0.187143em;
+}
+
+.ui.bottom.right.popup:before {
+  top: -0.257142em;
+  right: 2em;
+}
+
+.ui.top.left.popup:before, .ui.bottom.left.popup:before {
+  left: 2em;
+}

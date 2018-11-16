@@ -8,7 +8,7 @@ import {
   signOutSuccess
 } from '../actions/sessions';
 import { apiError } from '../actions/views';
-import { post, signOutApiRequest, userSchema } from '../utils/api';
+import { post, userSchema, destroy } from '../utils/api';
 import { decamelizeKeys } from 'humps';
 
 /***** SIGN IN *****/
@@ -63,8 +63,7 @@ export function* watchSignInSaga () {
 function signOut(currentUser) {
   const { id, token } = currentUser;
   const path = `/api/sessions/${id}`;
-  const body = { id };
-  return signOutApiRequest(path, body, token);
+  return destroy(path, token);
 }
 
 // manages our sign out flow

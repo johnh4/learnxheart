@@ -4,7 +4,7 @@ import { selectThing, toggleSelect } from '../../reducers/views';
 import { loadEducatorsRequest, loadEducatorRequest } from '../../actions/educators';
 import { signInRequest, signOutRequest } from '../../actions/sessions';
 import { getEducators, getEducatorIds } from '../../reducers/educators';
-import { currentUser, userSignedIn } from '../../reducers/sessions';
+import { currentUser, userSignedIn } from '../../selectors/sessions';
 
 class Educators extends Component {
   componentDidMount() {

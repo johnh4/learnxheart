@@ -6,8 +6,8 @@ const INITIAL_EDUCATORS = {};
 const educators = (state = INITIAL_EDUCATORS, action) => {
   switch (action.type) {
     default:
-      if (action.educators) {
-        return merge({}, state, action.educators);
+      if (action.entities && action.entities.educators) {
+        return merge({}, state, action.entities.educators);
       }
       return state;
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import App from '../../components/App';
-import SignIn from '.';
+import SignInView from '.';
 import { renderWithProviders } from '../../utils/testUtils';
 import axios from 'axios';
 import {
@@ -10,11 +10,10 @@ import {
 
 jest.mock('axios');
 
-describe('SignIn Container', () => {
+describe('SignInView Container', () => {
   test('renders without crashing', () => {
-    const { getByText, getByLabelText } = renderWithProviders(<SignIn />);
+    const { getByLabelText } = renderWithProviders(<SignInView />);
 
-    expect(getByText(/sign in page/i)).toBeInTheDocument();
     expect(getByLabelText(/email/i)).toBeInTheDocument();
     expect(getByLabelText(/password/i)).toBeInTheDocument();
   });

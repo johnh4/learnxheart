@@ -1,47 +1,48 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Header } from '.';
-import App from '../../components/App';
-import { Provider } from 'react-redux';
-import configureStore from '../../store/configureStore';
+import { AppWrapper } from '../../components/App';
 
+const AppDecorator = (storyFn) => (
+  <AppWrapper>{storyFn()}</AppWrapper>
+);
 
-storiesOf('Header', module)
-  .add('With no one signed in', () => (
-    <Header
-      userSignedIn={false}
-      currentUser={null}
-      className='App__header'
-      signOutRequest={() => {}}
-      studentSignedIn={false}
-      educatorSignedIn={false}
-    />
-  ))
-  .add('With a signed in educator', () => (
-    <Header
-      userSignedIn={true}
-      currentUser={educator}
-      className='App__header'
-      signOutRequest={() => {}}
-      studentSignedIn={false}
-      educatorSignedIn={true}
-    />
-  ))
-  .add('With a signed in student', () => (
-    <Header
-      userSignedIn={true}
-      currentUser={student}
-      className='App__header'
-      signOutRequest={() => {}}
-      studentSignedIn={true}
-      educatorSignedIn={false}
-    />
-  ))
-  .add('In App', () => (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  ));
+const stories = storiesOf('Header', module);
+
+stories.addDecorator(AppDecorator);
+
+stories.add('With no one signed in', () => (
+  <Header
+    userSignedIn={false}
+    currentUser={null}
+    classes='App__header'
+    signOutRequest={() => {}}
+    studentSignedIn={false}
+    educatorSignedIn={false}
+  />
+));
+
+stories.add('With a signed in educator', () => (
+  <Header
+    userSignedIn={true}
+    currentUser={educator}
+    classes='App__header'
+    signOutRequest={() => {}}
+    studentSignedIn={false}
+    educatorSignedIn={true}
+  />
+));
+
+stories.add('With a signed in student', () => (
+  <Header
+    userSignedIn={true}
+    currentUser={student}
+    classes='App__header'
+    signOutRequest={() => {}}
+    studentSignedIn={true}
+    educatorSignedIn={false}
+  />
+));
 
 const educator = {
   id: 1,
@@ -59,5 +60,3 @@ const student = {
   lastName: "Snow",
   type: "Student"
 }
-
-const store = configureStore();

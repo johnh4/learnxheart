@@ -1,9 +1,19 @@
-import { configure } from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react';
+import { withOptions } from '@storybook/addon-options';
 
-const req = require.context('../src/containers', true, /stories\.js$/);
+const reqContainers = require.context('../src/containers', true, /stories\.js$/);
+const reqComponents = require.context('../src/components', true, /stories\.js$/);
 
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  reqContainers.keys().forEach(filename => reqContainers(filename));
+  reqComponents.keys().forEach(filename => reqComponents(filename));
 }
+
+addDecorator(
+  withOptions({
+    name: 'Learn X Heart',
+    sortStoriesByKind: true
+  })
+);
 
 configure(loadStories, module);

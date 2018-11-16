@@ -3,7 +3,7 @@ class Api::CoursesController < ApplicationController
   respond_to :json
 
   def index
-    courses = Course.all
+    courses = Course.all.includes(:educator, :course_student_relationships)
     respond_with courses
   end
 

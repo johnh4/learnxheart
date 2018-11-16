@@ -11,6 +11,16 @@ RSpec.describe Api::StudentsController, type: :controller do
       expect(student_response[:email]).to eql student.email
       expect(response.status).to eq 200
     end
+
+    it "doesn't show to the token" do
+      student = create(:student)
+
+      get :show, params: { id: student.id }
+
+      student_response = json_response
+      expect(student_response[:token]).to_not eql student.token
+      expect(response.status).to eq 200
+    end
   end
 
   describe "PATCH #update" do

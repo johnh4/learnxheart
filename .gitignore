@@ -33,3 +33,6 @@
 
 # Ignore the generated react build
 /public
+
+# VSCode config
+/.vscode

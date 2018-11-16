@@ -8,7 +8,7 @@ import {
   signOutSuccess
 } from '../actions/sessions';
 import { apiError } from '../actions/views';
-import { post, signOutApiRequest, educatorSchema } from '../utils/api';
+import { post, signOutApiRequest, userSchema } from '../utils/api';
 import { decamelizeKeys } from 'humps';
 
 /***** SIGN IN *****/
@@ -27,11 +27,11 @@ function signIn(email, password) {
   const path = '/api/sessions';
   const credentials = { email, password };
   const decamelizedCredentials = decamelizeKeys(credentials);
-  return post(path, 'session', decamelizedCredentials, educatorSchema);
+  return post(path, 'session', decamelizedCredentials, userSchema);
 }
 
 // manages our sign in flow
-function* signInFlow(email, password) {
+function* signInFlow(email, password, setSubmitting) {
   try {
     const normalized = yield call(signIn, email, password);
     const user = extractUser(normalized);
@@ -43,6 +43,8 @@ function* signInFlow(email, password) {
 
   } catch (error) {
     yield put(apiError(error));
+  } finally {
+    setSubmitting(false);
   }
 }
 
@@ -50,8 +52,8 @@ function* signInFlow(email, password) {
 export function* watchSignInSaga () {
   while (true) {
     // wait until we receive a sign in request
-    const { email, password } = yield take(SIGN_IN_REQUEST)
-    yield call(signInFlow, email, password)
+    const { email, password, setSubmitting } = yield take(SIGN_IN_REQUEST)
+    yield call(signInFlow, email, password, setSubmitting)
   }
 }
 

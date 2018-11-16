@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import { connect } from 'react-redux';
-import { selectThing, toggleSelect } from './reducers/views';
-import { loadEducatorsRequest, loadEducatorRequest } from './actions/educators';
-import { signInRequest, signOutRequest } from './actions/sessions';
-import { getEducators, getEducatorIds } from './reducers/educators';
-import { currentUser, userSignedIn } from './reducers/sessions';
+import { selectThing, toggleSelect } from '../../reducers/views';
+import { loadEducatorsRequest, loadEducatorRequest } from '../../actions/educators';
+import { signInRequest, signOutRequest } from '../../actions/sessions';
+import { getEducators, getEducatorIds } from '../../reducers/educators';
+import { currentUser, userSignedIn } from '../../reducers/sessions';
 
 class Educators extends Component {
   componentDidMount() {
@@ -66,7 +65,7 @@ class Educators extends Component {
     const { educatorIds, currentUser, userSignedIn } = this.props;
 
     return (
-      <div>
+      <div data-testid="educators-view">
         <div onClick={this.handleSignIn}>
           { !userSignedIn &&
             <span>Sign in</span>

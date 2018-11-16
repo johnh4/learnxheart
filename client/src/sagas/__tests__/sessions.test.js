@@ -1,11 +1,15 @@
 import * as actions from '../../actions/sessions';
-import { mockResponse, setupStoreAndMockFetch } from '../../utils/mockResponse';
+import axios from 'axios';
+import configureStore from '../../store/configureStore';
+
+jest.mock('axios');
 
 describe("signInFlow", function() {
   it("adds the user to state upon a successful api request", done => {
     // setup the test
     const user = { id: 1, token: "fakeToken" };
-    const store = setupStoreAndMockFetch(user);
+    const store = configureStore();
+    axios.mockReturnValue(new Promise(resolve => resolve({ data: user})));
 
     // execute the test by triggering the watcher saga
     store.dispatch(actions.signInRequest());
@@ -24,7 +28,8 @@ describe("signInFlow", function() {
   it("adds the user to localStorage upon a successful api request", done => {
     // setup the test
     const user = { id: 1, token: 'fakeToken' };
-    const store = setupStoreAndMockFetch(user);
+    const store = configureStore();
+    axios.mockReturnValue(new Promise(resolve => resolve({ data: user })));
 
     // execute the test by triggering the watcher saga
     store.dispatch(actions.signInRequest());
@@ -43,7 +48,8 @@ describe("signOutFlow", function() {
     // setup the test
     const user = { id: 1, token: "fakeToken" };
     const initialState = { sessions: { currentUser: user } };
-    const store = setupStoreAndMockFetch({}, initialState);
+    const store = configureStore(initialState);
+    axios.mockReturnValue(new Promise(resolve => resolve({})));
 
     // execute the test by triggering the watcher saga
     store.dispatch(actions.signOutRequest(user));
@@ -62,7 +68,8 @@ describe("signOutFlow", function() {
     const user = { id: 1, token: 'fakeToken' };
     localStorage.setItem('user', JSON.stringify(user));
     const initialState = { sessions: { currentUser: user } };
-    const store = setupStoreAndMockFetch({}, initialState);
+    const store = configureStore(initialState);
+    axios.mockReturnValue(new Promise(resolve => resolve({})));
 
     // execute the test by triggering the watcher saga
     store.dispatch(actions.signOutRequest(user));

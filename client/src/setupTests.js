@@ -7,4 +7,10 @@ import 'react-testing-library/cleanup-after-each';
 
 require('jest-localstorage-mock');
 
+window.matchMedia = () => ({ 
+  matches: true,
+  addListener: () => {}, 
+  removeListener: () => {} 
+});
+
 Enzyme.configure({ adapter: new Adapter() });

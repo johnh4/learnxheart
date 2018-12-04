@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import CardSection from '../../components/CardSection';
 import CourseCard from '../../components/CourseCard';
 import Filter from '../../components/Filter';
-import Tabs from '../../components/Tabs';
+import PageHeader from '../../components/PageHeader';
+import LinkButton from '../../components/LinkButton';
+import Section from '../../components/Section';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faStickyNote } from '@fortawesome/free-solid-svg-icons';
 import { loadCoursesRequest } from '../../actions/courses';
 import {
   addCourseFilter,
@@ -109,55 +113,84 @@ export class CoursesViewComponent extends React.Component {
       ? 'browse-courses-view'
       : 'my-courses-view'
 
-    const tabs = [
-      { name: "My Courses", path: "/courses" },
-      { name: "Browse Courses", path: "/courses/browse" }
-    ];
-
     const myCoursesNotice = {
       noticeText: "Find great courses to follow",
       linkPath: "browse",
       linkText: "Browse Courses"
     }
 
+    const smallIcons = [
+      {
+        icon: <FontAwesomeIcon icon={faBook} />,
+        label: courseIds.length,
+        key: 'courses-icon'
+      },
+      {
+        icon: <FontAwesomeIcon icon={faStickyNote} />,
+        label: 40,
+        key: 'decks-icon'
+      }
+    ];
+    const courseLink = tab === 'My Courses'
+      ? <LinkButton to="browse">Browse Courses</LinkButton>
+      : <LinkButton to="/courses">My Courses</LinkButton>
+    const buttons = [
+      {
+        button: <LinkButton to="/study">Study Now</LinkButton>,
+        key: 'study-button'
+      },
+      {
+        button: courseLink,
+        key: 'course-link'
+      }
+    ];
+    const message = 'You have 5 important tasks today, some messages and notification. Finish them all! Or, you can also Edit Task.';
+
+    const filter = (
+      <Filter
+        classes="CoursesView__filter"
+        inputText={this.state.filterInputText}
+        placeholder="Filter courses"
+        handleAddFilter={this.handleAddFilter}
+        handleRemoveFilter={this.handleRemoveFilter}
+        handleFilterChange={this.handleFilterChange}
+        activeFilters={courseFilters}
+      />
+    );
+
     return (
       <div className="CoursesView" data-testid={dataTestId}>
-        <div className="CoursesView__header">
-          <Tabs
-            activeTab={tab}
-            tabs={tabs}
-            classes="CoursesView__tabs"
-            dataTestId="courses-view-tabs"
-          />
-          <Filter
-            classes="CoursesView__filter"
-            inputText={this.state.filterInputText}
-            placeholder="Filter courses"
-            handleAddFilter={this.handleAddFilter}
-            handleRemoveFilter={this.handleRemoveFilter}
-            handleFilterChange={this.handleFilterChange}
-            activeFilters={courseFilters}
-          />
-        </div>
-
-        <CardSection
-          entityIds={courseIds}
-          classes={`CoursesView__card-section ${classes}`}
-          dataTestId={dataTestId}
-          renderCard={(courseId) => (
-            <CourseCard
-              key={courseId}
-              courseId={courseId}
-              size="m"
-              classes="CardSection__card"
-            />
-          )}
-          emptyNotice={tab === "My Courses" ? myCoursesNotice : null}
+        <PageHeader
+          mainIcon={<FontAwesomeIcon icon={faBook} />}
+          smallIcons={smallIcons}
+          title={tab}
+          message={message}
+          buttons={buttons}
+          classes="CoursesView__page-header"
         />
+
+        <Section
+          headerText="Courses"
+          headerItem={filter}
+        >
+          <CardSection
+            entityIds={courseIds}
+            classes={`CoursesView__card-section ${classes}`}
+            dataTestId={dataTestId}
+            renderCard={(courseId) => (
+              <CourseCard
+                key={courseId}
+                courseId={courseId}
+                size="m"
+                classes="CardSection__card"
+              />
+            )}
+            emptyNotice={tab === "My Courses" ? myCoursesNotice : null}
+          />
+        </Section>
       </div>
     )
   }
-
 }
 
 CoursesViewComponent.propTypes = {

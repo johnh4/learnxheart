@@ -11,7 +11,7 @@ describe('App', () => {
   test('renders without crashing', () => {
     const { getByText } = renderWithProviders(<App />);
 
-    expect(getByText(/learn x heart/i)).toBeInTheDocument();
+    expect(getByText(/learnxheart/i)).toBeInTheDocument();
   });
 
   describe('navigation', () => {
@@ -37,8 +37,8 @@ describe('App', () => {
         await waitForElement(() => getByTestId('my-courses-view'));
 
         // execute the test
-        const tabs = getByTestId('courses-view-tabs');
-        fireEvent.click(within(tabs).getByText(linkText));
+        const pageHeader = getByTestId('page-header-actions');
+        fireEvent.click(within(pageHeader).getByText(linkText));
 
         // confirm page changes
         await waitForElement(() => getByTestId(viewTestId));

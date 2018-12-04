@@ -29,10 +29,10 @@ function Filter({
 
   return (
     <div className="Filter" data-testid="filter">
-      {!!activeFilters &&
+      {activeFilters.length > 0 &&
         <div className="Filter__items">
           {activeFilters.map(filter => (
-            <FilterItem 
+            <FilterItem
               filter={filter}
               handleRemoveFilter={handleRemoveFilter}
               key={filter}

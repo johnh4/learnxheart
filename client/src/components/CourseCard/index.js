@@ -190,7 +190,9 @@ export function CourseCardComponent(props) {
         </div>
         <div className="CourseCard__buttons">
           {renderCorrectButton()}
-          <LinkButton to={`/courses/${courseId}`}>View</LinkButton>
+          <LinkButton to={`/courses/${courseId}`} classes="CourseCard__button">
+            View
+          </LinkButton>
         </div>
       </div>
       <div className="CourseCard__toggle" onClick={handleToggle}>

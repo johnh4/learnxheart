@@ -5,6 +5,8 @@ import { Header as HeaderComponent } from '.';
 import { Provider } from 'react-redux';
 import configureStore from '../../store/configureStore';
 import { shallow } from 'enzyme';
+import { renderWithProviders } from '../../utils/testUtils';
+import { fireEvent, waitForElement } from 'react-testing-library';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -20,82 +22,70 @@ it('renders without crashing', () => {
 
 describe('when a user is signed in', () => {
   it('contains the user name', () => {
-    const { wrapper, user } = setupHeaderWithSignedInUser();
+    const { getByText } = setupHeaderWithSignedInUser();
 
-    const actualName = wrapper.find('.user-name').text();
-    const userName = user.firstName;
-    expect(actualName).toEqual(userName);
+    expect(getByText(user.firstName)).toBeInTheDocument();
   });
 
   it('contains a sign out link', () => {
-    const { wrapper } = setupHeaderWithSignedInUser();
+    const { getByText } = setupHeaderWithSignedInUser();
 
-    expect(wrapper.exists('.sign-out')).toEqual(true);
+    expect(getByText('Sign Out')).toBeInTheDocument();
   });
 
   it('does not have a sign in link', () => {
-    const { wrapper } = setupHeaderWithSignedInUser();
+    const { queryByText } = setupHeaderWithSignedInUser();
 
-    expect(wrapper.exists('.sign-in')).toEqual(false);
+    expect(queryByText('Sign In')).not.toBeInTheDocument();
   });
 
-  it('allows a user to sign out via the sign out link', () => {
-    // setup the component
-    const signOutLinkMock = jest.fn();
-    const user = {
-      id: 1,
-      token: "fake",
-      firstName: "Clare",
-      lastName: "Underwood"
-    }
-    const wrapper = shallow(
-      <HeaderComponent
-        userSignedIn={true}
-        currentUser={user}
-        signOutRequest={signOutLinkMock}
-      />
-    );
+  it('allows a user to sign out via the sign out link', async () => {
+    const { signOutLinkMock, getByText } = setupHeaderWithSignedInUser();
+    const signOutLink = getByText('Sign Out');
 
-    // click the sign out link
-    wrapper
-      .find('.sign-out')
-      .simulate('click');
+    fireEvent.click(signOutLink);
 
-    // execute the test
     expect(signOutLinkMock).toHaveBeenCalled();
   });
 });
 
 describe('when a user is not signed in', () => {
   it('has a sign in link', () => {
-    const wrapper = setupHeaderWithoutUser();
+    const { getByText } = setupHeaderWithoutUser();
 
-    expect(wrapper.exists('.sign-in')).toEqual(true);
+    expect(getByText('Sign In')).toBeInTheDocument();
   });
 
   it('does not have a sign out link', () => {
-    const wrapper = setupHeaderWithoutUser();
+    const { queryByText } = setupHeaderWithoutUser();
 
-    expect(wrapper.exists('.sign-out')).toEqual(false);
+    expect(queryByText('Sign Out')).not.toBeInTheDocument();
   });
 });
 
+const user = {
+  id: 1,
+  token: "fake",
+  firstName: "Clare",
+  lastName: "Underwood"
+}
+
 function setupHeaderWithSignedInUser() {
-  const user = {
-    id: 1,
-    token: "fake",
-    firstName: "Clare",
-    lastName: "Underwood"
-  }
-  const wrapper = shallow(
-    <HeaderComponent userSignedIn={true} currentUser={user} />
+  const signOutLinkMock = jest.fn();
+  const render = renderWithProviders(
+    <HeaderComponent
+      userSignedIn={true}
+      currentUser={user}
+      signOutRequest={signOutLinkMock}
+    />
   );
-  return { wrapper, user };
+  return { ...render, signOutLinkMock };
 }
 
 function setupHeaderWithoutUser() {
-  const wrapper = shallow(
-    <HeaderComponent userSignedIn={false} />
+  return renderWithProviders(
+    <HeaderComponent
+      userSignedIn={false}
+    />
   );
-  return wrapper;
 }

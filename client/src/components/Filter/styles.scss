@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: row;
   font-weight: light;
+  flex-wrap: wrap;
 }
 
 .Filter__item {
@@ -30,6 +31,9 @@
   font-size: 11px;
 }
 
+.Filter__form {
+  display: flex;
+}
 .Filter__input {
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 0.57px;
@@ -52,4 +56,16 @@
   font-size: 13px;
   color: $dark-text-color;
   border-color: $dark-text-color;
+}
+
+@media screen and (max-width: 767px) {
+  .Filter {
+    flex-direction: column;
+  }
+  .Filter__form {
+    order: -1;
+  }
+  .Filter__items {
+    margin-top: 15px;
+  }
 }

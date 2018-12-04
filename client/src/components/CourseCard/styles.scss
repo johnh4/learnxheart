@@ -77,6 +77,19 @@
   justify-content: center;
 }
 
+@media screen and (max-width: 767px) {
+  .CourseCard__buttons {
+    flex-direction: column;
+  }
+  .CourseCard__button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .CourseCard__button:last-child {
+    margin-bottom: 0px;
+  }
+}
+
 .ui.popup {
   font-family: 'Open Sans';
   font-size: 13px;

@@ -20,7 +20,7 @@ export function AppWrapper({ children }) {
 
 function AppContents() {
   return(
-    <Fragment>
+    <div className="App__contents">
       <Header classes="App__header"/>
       <div className="App__container">
         <Router primary={false}>
@@ -41,7 +41,7 @@ function AppContents() {
           />
         </Router>
       </div>
-    </Fragment>
+    </div>
   );
 }
 

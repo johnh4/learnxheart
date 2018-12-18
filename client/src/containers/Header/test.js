@@ -9,15 +9,21 @@ import { renderWithProviders } from '../../utils/testUtils';
 import { fireEvent, waitForElement } from 'react-testing-library';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  const store = configureStore();
-  ReactDOM.render(
-    <Provider store={store}>
-      <Header />
-    </Provider>,
-    div
+  // const div = document.createElement('div');
+  // const store = configureStore();
+  // ReactDOM.render(
+  //   <Provider store={store}>
+  //     <Header />
+  //   </Provider>,
+  //   div
+  // );
+  // ReactDOM.unmountComponentAtNode(div);
+  const { getByTestId } = renderWithProviders(
+    <HeaderComponent
+      userSignedIn={false}
+    />
   );
-  ReactDOM.unmountComponentAtNode(div);
+  expect(getByTestId('header')).toBeInTheDocument();
 });
 
 describe('when a user is signed in', () => {

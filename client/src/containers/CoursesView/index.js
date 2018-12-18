@@ -132,7 +132,7 @@ export class CoursesViewComponent extends React.Component {
       }
     ];
     const courseLink = tab === 'My Courses'
-      ? <LinkButton to="browse">Browse Courses</LinkButton>
+      ? <LinkButton to="/courses/browse">Browse Courses</LinkButton>
       : <LinkButton to="/courses">My Courses</LinkButton>
     const buttons = [
       {

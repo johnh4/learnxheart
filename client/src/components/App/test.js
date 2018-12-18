@@ -93,7 +93,7 @@ const expectToBeAbleToNavigateToPageAsUser = async (viewTestId, linkText) => {
 
 const expectToBeAbleToNavigateToPage = async (viewTestId, linkText, initialState) => {
   // setup the test
-  const {getByTestId, queryByTestId } = renderWithProviders(
+  const { getByTestId, queryByTestId } = renderWithProviders(
     <App />,
     { initialState }
   );
@@ -112,7 +112,7 @@ const expectToBeAbleToNavigateToPage = async (viewTestId, linkText, initialState
 
 const expectToNotBeAbleToNavigateToPage = async (viewTestId, linkText) => {
   // setup the test
-  const {getByTestId, queryByTestId } = renderWithProviders(<App />);
+  const { getByTestId, queryByTestId } = renderWithProviders(<App />, {route: '/'});
   expect(getByTestId('dashboard-view')).toBeInTheDocument();
   expect(queryByTestId(viewTestId)).not.toBeInTheDocument();
   const header = getByTestId('header');

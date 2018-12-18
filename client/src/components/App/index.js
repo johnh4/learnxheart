@@ -5,10 +5,13 @@ import pinkPolygons from '../../images/pink-polygons.png';
 import List from '../../List';
 import Educators from '../Educators';
 import SignInView from '../../containers/SignInView';
-import { Router } from '@reach/router';
 import Header from '../../containers/Header';
 import CoursesView from '../../containers/CoursesView';
 import ProtectedRoute from '../../containers/ProtectedRoute';
+import {
+  Route,
+  Switch
+} from 'react-router-dom';
 
 export function AppWrapper({ children }) {
   return (
@@ -23,23 +26,25 @@ function AppContents() {
     <div className="App__contents">
       <Header classes="App__header"/>
       <div className="App__container">
-        <Router primary={false}>
-          <Dashboard path="/" />
-          <Educators path="/educators" />
-          <SignInView path="/sign-in" />
-          <NotFound default />
+        <Switch>
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/educators" component={Educators} />
+          <Route path="/sign-in" component={SignInView} />
 
           <ProtectedRoute
             path="/courses"
+            exact
             tab="My Courses"
-            renderComponent={(props) => <CoursesView {...props} />}
+            component={CoursesView}
           />
           <ProtectedRoute
             path="/courses/browse"
             tab="Browse Courses"
-            renderComponent={(props) => <CoursesView {...props} />}
+            component={CoursesView}
           />
-        </Router>
+
+          <Route component={NotFound} />
+        </Switch>
       </div>
     </div>
   );

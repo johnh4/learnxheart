@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './styles.scss';
 import '../../components/App/App.scss';
@@ -154,6 +154,12 @@ function DesktopHeader({
           <Link to='/courses' className='Link Nav__link'>
             <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
             Courses
+          </Link>
+        </li>
+        <li className='Nav__item'>
+          <Link to='/courses/browse' className='Link Nav__link'>
+            <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
+            Browse
           </Link>
         </li>
         <li className='Nav__item'>

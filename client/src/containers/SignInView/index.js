@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { userSignedIn } from '../../selectors/sessions';
 import { signInRequest } from '../../actions/sessions';
 import SignInForm from '../../components/SignInForm';
-import { Redirect } from '@reach/router';
+import { Redirect } from 'react-router-dom';
 
 export function SignInView({ signInRequest, userSignedIn }) {
   const autoSubmit = () => {

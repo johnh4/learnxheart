@@ -1,11 +1,11 @@
 @import '../App/variables.scss';
 
-.PageHeader {
+.ViewHeader {
   display: flex;
   color: $dark-text-color;
 }
 
-.PageHeader__icons {
+.ViewHeader__icons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,42 +14,42 @@
     display: none;
   }
 }
-.PageHeader__main-icon {
+.ViewHeader__main-icon {
   display: flex;
   font-size: 90px;
   justify-content: center;
   font-style: italic;
 }
-.PageHeader__small-icon-group {
+.ViewHeader__small-icon-group {
   display: flex;
   display: row;
   justify-content: space-between;
   font-size: 13px;
   min-width: 92px;
 }
-.PageHeader__small-icon-pair {
+.ViewHeader__small-icon-pair {
   display: flex;
   flex-direction: row;
 }
-.PageHeader__small-icon {
+.ViewHeader__small-icon {
   margin-right: 6px;
 }
 
 
 
 
-.PageHeader__details {
+.ViewHeader__details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 148px;
 }
 
-.PageHeader__title {
+.ViewHeader__title {
   font-size: 31px;
 }
 
-.PageHeader__divider {
+.ViewHeader__divider {
   height: 1px;
   width: 68px;
   background: rgba(10, 27, 73, 0.17);
@@ -57,14 +57,14 @@
   margin-bottom: 20px;
 }
 
-.PageHeader__message {
+.ViewHeader__message {
   margin-bottom: 20px;
   font-size: 13px;
 }
 
-.PageHeader__actions {
+.ViewHeader__actions {
   display: flex;
 }
-.PageHeader__button {
+.ViewHeader__button {
   margin-right: 23px;
 }

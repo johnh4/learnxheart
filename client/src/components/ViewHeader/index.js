@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-function PageHeader({
+function ViewHeader({
   mainIcon,
   subHeader,
   smallIcons,
@@ -14,27 +14,27 @@ function PageHeader({
 }) {
   return (
     <header
-      className={`PageHeader ${classes}`}
+      className={`ViewHeader ${classes}`}
       data-testid={dataTestId}
     >
-      <div className="PageHeader__icons">
-        <div className="PageHeader__main-icon">
+      <div className="ViewHeader__icons">
+        <div className="ViewHeader__main-icon">
           {mainIcon}
         </div>
-        <div className="PageHeader__icon-sub-header">
+        <div className="ViewHeader__icon-sub-header">
           {subHeader}
         </div>
         {!!smallIcons &&
-          <div className="PageHeader__small-icon-group">
+          <div className="ViewHeader__small-icon-group">
             {smallIcons.map(iconPair => (
               <div
-                className="PageHeader__small-icon-pair"
+                className="ViewHeader__small-icon-pair"
                 key={iconPair.key}
               >
-                <div className="PageHeader__small-icon">
+                <div className="ViewHeader__small-icon">
                   {iconPair.icon}
                 </div>
-                <div className="PageHeader__icon-label">
+                <div className="ViewHeader__icon-label">
                   {iconPair.label}
                 </div>
               </div>
@@ -42,17 +42,17 @@ function PageHeader({
           </div>
         }
       </div>
-      <div className="PageHeader__details">
-        <div className="PageHeader__title">{title}</div>
-        <div className="PageHeader__divider"></div>
-        <div className="PageHeader__message">{message}</div>
+      <div className="ViewHeader__details">
+        <div className="ViewHeader__title">{title}</div>
+        <div className="ViewHeader__divider"></div>
+        <div className="ViewHeader__message">{message}</div>
         {buttons.length > 0 &&
           <div
-            className="PageHeader__actions"
+            className="ViewHeader__actions"
             data-testid="page-header-actions"
           >
             {buttons.map(buttonInfo => (
-              <div className="PageHeader__button" key={buttonInfo.key}>
+              <div className="ViewHeader__button" key={buttonInfo.key}>
                 {buttonInfo.button}
               </div>
             ))}
@@ -63,7 +63,7 @@ function PageHeader({
   )
 }
 
-PageHeader.propTypes = {
+ViewHeader.propTypes = {
   classes: PropTypes.string,
   dataTestId: PropTypes.string,
   subHeader: PropTypes.string,
@@ -80,7 +80,7 @@ PageHeader.propTypes = {
   }))
 }
 
-PageHeader.defaultProps = {
+ViewHeader.defaultProps = {
   classes: '',
   dataTestId: 'page-header',
   subHeader: '',
@@ -90,4 +90,4 @@ PageHeader.defaultProps = {
   buttons: []
 }
 
-export default PageHeader;
+export default ViewHeader;

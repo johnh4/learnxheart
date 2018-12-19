@@ -44,38 +44,31 @@ describe('SignInView Container', () => {
 });
 
 /**
- * Test that the user can sign in via the form and be recognized as the correct type
+ * Test that the user can sign in via the form
  * @param {object} user User data for the test
  */
 const expectUserToBeAbleToSignIn = async (user) => {
-    // setup
-    axios.mockReturnValue(new Promise(resolve => resolve({ data: user })))
-    const {
-      getByLabelText,
-      getByText,
-      queryByText,
-      getByTestId,
-      queryByTestId
-    } = renderWithProviders(<App />, { route: '/sign-in'});
-    const emailInput = getByLabelText(/email/i);
-    const passwordInput = getByLabelText(/password/i);
-    const button = getByText(/submit/i);
-    expect(queryByText(/Sign Out/i)).not.toBeInTheDocument();
+  // setup
+  axios.mockReturnValue(new Promise(resolve => resolve({ data: user })))
+  const {
+    getByLabelText,
+    getByText,
+    queryByText,
+    getByTestId,
+    queryByTestId
+  } = renderWithProviders(<App />, { route: '/sign-in'});
+  const emailInput = getByLabelText(/email/i);
+  const passwordInput = getByLabelText(/password/i);
+  const button = getByText(/submit/i);
+  expect(queryByText(/Sign Out/i)).not.toBeInTheDocument();
 
-    // test
-    fireEvent.change(emailInput, { target: { value: user.email }})
-    fireEvent.change(passwordInput, { target: { value: user.password }})
-    fireEvent.click(button);
+  // test
+  fireEvent.change(emailInput, { target: { value: user.email }})
+  fireEvent.change(passwordInput, { target: { value: user.password }})
+  fireEvent.click(button);
 
-    // verify sign in
-    await expectUserToBeSignedIn(user, getByText);
-    if (user.type === "Student") {
-      expect(getByTestId(/student-header-icon/i)).toBeInTheDocument();
-      expect(queryByTestId('educator-header-icon')).not.toBeInTheDocument();
-    } else if (user.type === "Educator") {
-      expect(getByTestId(/educator-header-icon/i)).toBeInTheDocument();
-      expect(queryByTestId('student-header-icon')).not.toBeInTheDocument();
-    }
+  // verify sign in
+  await expectUserToBeSignedIn(user, getByText);
 }
 
 /**

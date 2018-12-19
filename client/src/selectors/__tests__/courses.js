@@ -1,7 +1,8 @@
 import {
   selectCourses,
   selectCourseIds,
-  selectCourseByCourseIdProp
+  selectCourseByCourseIdProp,
+  selectCourseIdsByEducatorIdProp
 } from '../courses';
 
 describe('courses selectors', () => {
@@ -32,20 +33,50 @@ describe('courses selectors', () => {
       expect(actualResult).toEqual(expectedResult);
     });
   });
+
+  describe('selectCourseIdsByEducatorIdProp', () => {
+    test('returns an educators courses', () => {
+      const params = { educatorId: 1 }
+      const actualResult = selectCourseIdsByEducatorIdProp(
+        stateWithEducators, params
+      );
+
+      const expectedResult = [1, 2];
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 });
 
 const courses = {
+  "1": {
+    id: 1,
+    educator: 1
+  },
+  "2": {
+    id: 2,
+    educator: 1
+  },
+  "3": {
+    id: 3,
+    educator: 2
+  }
+}
+
+const educators = {
   "1": {
     id: 1
   },
   "2": {
     id: 2
-  },
-  "3": {
-    id: 3
   }
 }
-
 const state = {
   entities: { courses }
+}
+
+const stateWithEducators = {
+  entities: {
+    educators,
+    courses
+  }
 }

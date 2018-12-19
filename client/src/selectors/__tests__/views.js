@@ -2,6 +2,7 @@ import {
   selectFilters,
   selectCourseFilters,
   selectFilteredCourses,
+  selectFilteredEducators,
   selectFilteredCoursesCurrentStudentIsFollowing
 } from '../views';
 
@@ -45,6 +46,15 @@ describe('View selectors', () => {
       const actualResult = selectFilteredCourses(state);
 
       const expectedResult = [2];
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
+
+  describe('selectFilteredEducators', () => {
+    test('returns educators filtered by name', () => {
+      const actualResult = selectFilteredEducators(getState(['chelsea']));
+
+      const expectedResult = [7];
       expect(actualResult).toEqual(expectedResult);
     });
   });

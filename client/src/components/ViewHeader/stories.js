@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import PageHeader from '.';
+import ViewHeader from '.';
 import './styles.scss';
 import { AppWrapper } from '../../components/App';
 import LinkButton from '../LinkButton';
@@ -12,13 +12,13 @@ const AppDecorator = (storyFn) => (
   <AppWrapper>{storyFn()}</AppWrapper>
 );
 
-const stories = storiesOf('PageHeader', module);
+const stories = storiesOf('ViewHeader', module);
 
 stories.addDecorator(AppDecorator);
 stories.addDecorator(withKnobs);
 
 stories.add('With no data', () => (
-  <PageHeader /> 
+  <ViewHeader /> 
 ));
 
 stories.add('With data', () => {
@@ -40,7 +40,7 @@ stories.add('With data', () => {
   ];
   const message = 'You have 5 important tasks today, some messages and notification. Finish them all! Or, you can also Edit Task.';
   return (
-    <PageHeader
+    <ViewHeader
       mainIcon={<FontAwesomeIcon icon={faBook} />}
       subHeader={text("Course Subheader", "Course Subheader")}
       smallIcons={smallIcons}

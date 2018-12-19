@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import logo from '../../logo.svg';
 import './App.scss';
-import pinkPolygons from '../../images/pink-polygons.png';
 import List from '../../List';
 import Educators from '../Educators';
 import SignInView from '../../containers/SignInView';
 import Header from '../../containers/Header';
 import CoursesView from '../../containers/CoursesView';
 import ProtectedRoute from '../../containers/ProtectedRoute';
+import BrowseView from '../../components/BrowseView';
+import { Link } from 'react-router-dom';
 import {
   Route,
   Switch
@@ -15,7 +16,7 @@ import {
 
 export function AppWrapper({ children }) {
   return (
-    <div className="App" style={ { backgroundImage: `url(${pinkPolygons})` }}>
+    <div className="App">
       {children}
     </div>
   );
@@ -43,6 +44,8 @@ function AppContents() {
             component={CoursesView}
           />
 
+          <ProtectedRoute path="/browse" component={BrowseView} />
+
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -61,6 +64,16 @@ function App() {
 function Dashboard() {
   return (
     <header className="App-header" data-testid="dashboard-view">
+        <li className='Nav__item'>
+          <Link to='/educators' className='Link Nav__link'>
+            Educators
+          </Link>
+        </li>
+        <li className='Nav__item'>
+          <Link to='/courses' className='Link Nav__link'>
+            Courses
+          </Link>
+        </li>
       <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.js</code> and save to reload.

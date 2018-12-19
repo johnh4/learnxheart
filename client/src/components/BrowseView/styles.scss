@@ -1,0 +1,61 @@
+.BrowseView {
+  display: flex;
+  flex-direction: column;
+}
+
+.BrowseView__page-header {
+}
+
+.BrowseView__browse-section {
+}
+
+.BrowseView__browse-link {
+  font-size: 22px;
+  font-weight: 100;
+  opacity: .49;
+  text-decoration: none;
+}
+.BrowseView__browse-link.active, .BrowseView__browse-link:hover {
+  font-weight: 400;
+  opacity: 1;
+}
+.BrowseView__browse-link::after {
+  content: "|";
+  color: #3A4C9A;
+  margin-left: 40px;
+  margin-right: 40px;
+  display: inline-block;
+}
+.BrowseView__browse-link:last-child::after {
+  content: none;
+}
+
+
+
+.PageHeader {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  justify-content: space-between;
+  margin-bottom: 71px;
+}
+.PageHeader a {
+  color: white;
+}
+.PageHeader__headline {
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 2.17px;
+  margin: 0px;
+}
+
+h6 {
+  font-size: 14px;
+  letter-spacing: 2.17px;
+  font-weight: 400;
+  margin: 0px;
+}

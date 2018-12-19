@@ -1,7 +1,8 @@
 import {
   selectEducators,
   selectEducatorByCourseIdProp,
-  selectEducatorNameByCourseIdProp
+  selectEducatorNameByCourseIdProp,
+  selectEducatorByEducatorIdProp
 } from '../educators';
 
 describe('Educator selectors', () => {
@@ -32,6 +33,16 @@ describe('Educator selectors', () => {
       const actualResult = selectEducatorNameByCourseIdProp(state, params);
 
       const expectedResult = 'Jon Stark';
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
+
+  describe('selectEducatorByEducatorIdProp', () => {
+    test('returns all educators', () => {
+      const params = { educatorId: educator.id }
+      const actualResult = selectEducatorByEducatorIdProp(state, params);
+
+      const expectedResult = educators[educator.id];
       expect(actualResult).toEqual(expectedResult);
     });
   });

@@ -1,0 +1,42 @@
+@import '../../components/App/colors.scss';
+
+.EducatorDetail {
+  padding: 30px 37px;
+}
+
+.EducatorDetail__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.EducatorDetail__educator-name {
+  color: $color-a-80;
+  font-weight: 600;
+}
+
+.EducatorDetail__follow-button {
+  align-self: flex-end;
+  margin-bottom: 15px;
+}
+
+.EducatorDetail__nameplate {
+}
+
+.EducatorDetail__name {
+}
+
+.EducatorDetail__description {
+}
+
+.EducatorDetail__course-items {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.EducatorDetail__course-list-item {
+  background: none;
+  box-shadow: none;
+  width: 225px;
+}

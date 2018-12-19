@@ -37,6 +37,19 @@ export const selectFilters = (state) => state.views.filters;
  );
 
 /**
+ * Filter the educators by educator filters, and return their ids
+ * @param  {object}   state
+ * @return {number[]}          A filtered array of educator ids
+ */
+ export const selectFilteredEducators = createSelector(
+   selectEducators,
+   selectCourseFilters,
+   (educators, filters) => {
+     return filterEducators(educators, filters);
+   }
+ );
+
+/**
  * Filter the course that the current student is following by course filters,
  * and return their ids
  * @param  {object}   state
@@ -83,4 +96,26 @@ const filterCourses = (courses, educators, filters) => {
     coursesArray = fuse.search(filter);
   });
   return coursesArray.map(course => parseInt(course.id));
+}
+
+/**
+ * Filter educators by name
+ * @param  {object}   educators   The educators that we're filtering
+ * @param  {string[]} filters     The filters that we're applying
+ * @return {number[]}             An array of filtered educator ids
+ */
+const filterEducators = (educators, filters) => {
+  let educatorsArray = Object.values(educators);
+  filters.forEach(filter => {
+    const options = {
+      keys: [
+        'firstName',
+        'lastName'
+      ],
+      threshold: 0.425
+    };
+    const fuse = new Fuse(educatorsArray, options);
+    educatorsArray = fuse.search(filter);
+  });
+  return educatorsArray.map(educator => parseInt(educator.id));
 }

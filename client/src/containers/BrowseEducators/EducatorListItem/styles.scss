@@ -1,0 +1,44 @@
+@import '../../../components/App/colors.scss';
+
+.EducatorListItem {
+  font-size: 13px;
+  font-weight: bold;
+}
+.EducatorListItem__details {
+  display: flex;
+  align-items: center;;
+  justify-content: space-between;
+}
+.EducatorListItem__educator-name {
+  color: $color-d-80;
+  letter-spacing: .79px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.EducatorListItem__spacer {
+  background: $color-g-40;
+  height: 4px;
+  width: 4px;
+  border-radius: 100px;
+}
+
+.EducatorListItem__stats {
+  display: flex;
+  width: 65px;
+  justify-content: space-between;
+}
+.EducatorListItem__stat-group {
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+}
+.EducatorListItem__stat-icon {
+  color: $color-g-80;
+  font-size: 9px;
+  margin-right: 6px;
+}
+.EducatorListItem__stat-value {
+  color: $color-g-100;
+  font-size: 11px;
+  font-weight: 600;
+}

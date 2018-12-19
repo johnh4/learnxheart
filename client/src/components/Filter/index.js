@@ -15,7 +15,9 @@ function Filter({
   handleAddFilter,
   handleRemoveFilter,
   handleFilterChange,
-  activeFilters
+  activeFilters,
+  showButton,
+  classes
 }) {
   function onAddFilter(e) {
     e.preventDefault();
@@ -28,7 +30,34 @@ function Filter({
   }
 
   return (
-    <div className="Filter" data-testid="filter">
+    <div className={`Filter ${classes}`} data-testid="filter">
+      <form onSubmit={onAddFilter} className="Filter__form">
+        <FontAwesomeIcon
+          icon={faFilter}
+          className="Filter__icon Filter__filter-icon"
+        />
+        <input
+          type="text"
+          name="filter"
+          value={inputText}
+          aria-label="filter"
+          placeholder={placeholder}
+          onChange={onFilterChange}
+          required
+          className="Filter__input"
+        />
+        {showButton &&
+          <Button
+            type="submit"
+            classes="Button_style_blank Filter__submit-button"
+          >
+            <FontAwesomeIcon
+              icon={faPlus}
+              className="Filter__icon Filter__add-icon"
+            />
+          </Button>
+        }
+      </form>
       {activeFilters.length > 0 &&
         <div className="Filter__items">
           {activeFilters.map(filter => (
@@ -40,25 +69,6 @@ function Filter({
           ))}
         </div>
       }
-      <form onSubmit={onAddFilter} className="Filter__form">
-        <FontAwesomeIcon icon={faFilter} className="Filter__icon"/>
-        <input
-          type="text"
-          name="filter"
-          value={inputText}
-          aria-label="filter"
-          placeholder={placeholder}
-          onChange={onFilterChange}
-          required
-          className="Filter__input"
-        />
-        <Button
-          type="submit"
-          classes="Button_style_blank Filter__submit-button"
-        >
-          <FontAwesomeIcon icon={faPlus} className="Filter__icon"/>
-        </Button>
-      </form>
     </div>
   )
 }
@@ -107,10 +117,13 @@ export function FilterItem({ filter, handleRemoveFilter }) {
 
 FilterItem.propTypes = {
   filter: PropTypes.string,
-  handleRemoveFilter: PropTypes.func
+  handleRemoveFilter: PropTypes.func,
+  classes: PropTypes.string
 }
 
 FilterItem.defaultProps = {
   filter: '',
-  handleRemoveFilter: () => {}
+  showButton: false,
+  handleRemoveFilter: () => {},
+  classes: ''
 }

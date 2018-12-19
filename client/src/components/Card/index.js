@@ -4,7 +4,7 @@ import './styles.scss';
 
 function Card({ size, children, classes, dataTestId, ...otherProps }) {
   return (
-    <div className={`Card Card_${size} ${classes}`} data-testid={dataTestId} {...otherProps}>
+    <div className={`Card ${classes}`} data-testid={dataTestId} {...otherProps}>
       {children}
     </div>
   );

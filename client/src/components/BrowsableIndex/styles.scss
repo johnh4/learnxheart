@@ -1,0 +1,29 @@
+.BrowsableIndex {
+  display: flex;
+  flex-direction: row;
+}
+
+.BrowsableIndex__list {
+  list-style: none;
+  padding-left: 0px;;
+  margin: 0px 27px 0px 0px;
+}
+
+.List {
+  display: flex;
+  flex-direction: column;
+  width: 257px;
+  min-width: 257px;
+}
+.List__filter {
+  margin-bottom: 15px;
+  align-self: stretch;
+}
+
+.List__item {
+  margin-bottom: 28px;
+}
+
+.BrowsableIndex__detail {
+  flex-grow: 1;
+}

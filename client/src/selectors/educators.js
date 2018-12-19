@@ -14,12 +14,12 @@ export const selectEducators = (state) => state.entities.educators;
  * @param  {object} state
  * @param  {object} params
  * @param  {number} params.courseId   The course's id within params
- * @return {object|null}              The course's educator
+ * @return {object|null|false}        The course's educator
  */
 export const selectEducatorByCourseIdProp = createSelector(
   selectCourseByCourseIdProp,
   selectEducators,
- (course, educators) => educators[course.educator]
+ (course, educators) => !!course && educators[course.educator]
 )
 
 /**
@@ -36,3 +36,17 @@ export const selectEducatorNameByCourseIdProp = createCachedSelector(
                   ? `${educator.firstName} ${educator.lastName}`
                   : null
 )((_, props) => props.courseId);
+
+/**
+ * Uses state and params to get an educator from state
+ * Cached by educatorId
+ * @param  {object} state
+ * @param  {object} params
+ * @param  {number} params.educatorId   The educator's id within params
+ * @return {object}                     The educator
+ */
+export const selectEducatorByEducatorIdProp = createCachedSelector(
+  selectEducators,
+  (_, props) => props.educatorId,
+  (educators, educatorId) => educators[educatorId]
+)((_, { educatorId }) => educatorId);

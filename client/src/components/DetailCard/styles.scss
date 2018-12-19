@@ -1,0 +1,94 @@
+@import '../../components/App/colors.scss';
+
+.DetailCard {
+  position: sticky;
+  top: 15px;
+  min-height: 85vh;
+  overflow: scroll;
+  // -webkit-transform: translateZ(0);
+}
+
+.DetailCard__nameplate {
+}
+
+.DetailCard__name {
+  font-size: 24px;
+}
+
+.DetailCard__headline {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: $color-d-100;
+}
+
+.DetailCard__body-text {
+  color: $color-d-80;
+}
+.DetailCard__section {
+  border-bottom: $color-g-30 1px solid;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+.DetailCard__section:last-of-type {
+  border-bottom: none;
+}
+.DetailCard__divider {
+  // width: 100%;
+  // height: 1px;
+  // border-bottom: $color-g-100;
+}
+
+.Nameplate {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+  background: $color-a-100;
+  border-radius: 27px;
+  padding: 10px 35px;
+  color: white;
+}
+.Nameplate__stats {
+  display: flex;
+  position: relative;
+  top: 2px;
+}
+.Nameplate__stat-group {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  align-items: baseline;
+}
+.Nameplate__stat-icon {
+  font-size: 13px;
+  color: $color-a-40;
+}
+.Nameplate__stat-value {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0px 5px 0px 8px;
+  position: relative;
+  top: 2px;
+}
+.Nameplate__stat-label {
+  color: $color-a-40;
+  font-size: 10px;
+  letter-spacing: 0.18px;
+  font-weight: 600;
+}
+
+.LightButton {
+  display: flex;
+  align-items: center;
+  background: $color-a-20;
+  border-radius: 27px;
+  padding: 12px 25px;
+  color: $color-a-100;
+  font-weight: 700;
+  font-size: 15px;
+}
+.LightButton__icon {
+  font-size: 14px;
+  margin-right: 7px;
+}

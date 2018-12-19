@@ -1,9 +1,19 @@
 .App {
-  text-align: center;
   min-height: 100vh;
-  font-family: 'Montserrat';
+  font-family: 'Open Sans', 'sans-serif';
+  background-attachment: fixed;
+  font-family: 'Open Sans';
+  letter-spacing: 1.07px;
+  font-weight: 400;
+}
+.App__contents {
+  background: linear-gradient(rgba(250, 208, 196, 0.50), rgba(255, 209, 255, 0.50));
+  min-height: 100vh;
+}
 
-  .App__container {
-    padding: 40px 45px;
-  }
+.App__header {
+  padding: 22px 45px;
+}
+.App__container {
+  padding: 40px 45px;
 }

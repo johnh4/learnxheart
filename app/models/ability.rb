@@ -10,6 +10,7 @@ class Ability
       can :read, Course
       can :read, Deck
       can :read, Card
+      can :read, CourseStudentRelationship
       can :destroy, :session
       if user.educator?
         can :manage, Educator, id: user.id
@@ -19,6 +20,7 @@ class Ability
       end
       if user.student?
         can :manage, Student, id: user.id
+        can :manage, CourseStudentRelationship, student_id: user.id
       end
     end
     # For testing requests that expect json responses

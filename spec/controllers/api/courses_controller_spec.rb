@@ -10,9 +10,39 @@ RSpec.describe Api::CoursesController, type: :controller do
       get :index
 
       courses_response = json_response
-      ids = course_ids_from_response courses_response
+      ids = ids_from_response courses_response
       expect(ids).to match [course_1.id, course_2.id]
       expect(courses_response.length).to be 2
+      expect(response.status).to eq 200
+    end
+
+    it "courses include course_student_relationships" do
+      course = create(:course)
+      csr_1 = create(:course_student_relationship, course: course)
+      csr_2 = create(:course_student_relationship, course: course)
+      csr_3 = create(:course_student_relationship, course: course)
+      other_csr = create(:course_student_relationship)
+
+      get :index
+
+      courses_response = json_response
+      csr_response = courses_response.first[:course_student_relationships]
+      expect(csr_response.length).to eq 3
+      ids = ids_from_response csr_response
+      expect(ids).to match [csr_1.id, csr_2.id, csr_3.id]
+      expect(response.status).to eq 200
+    end
+
+    it "courses include educators" do
+      educator = create(:educator)
+      other_educator = create(:educator)
+      course = create(:course, educator: educator)
+
+      get :index
+
+      courses_response = json_response
+      educator_response = courses_response.first[:educator]
+      expect(educator.id).to equal educator_response[:id]
       expect(response.status).to eq 200
     end
   end
@@ -103,7 +133,7 @@ RSpec.describe Api::CoursesController, type: :controller do
     end
   end
 
-  def course_ids_from_response courses_response
-    courses_response.map { |c| c[:id] }
+  def ids_from_response response
+    response.map { |c| c[:id] }
   end
 end

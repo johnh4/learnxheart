@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { userSignedIn } from '../../reducers/sessions';
+import { userSignedIn } from '../../selectors/sessions';
 import { signInRequest } from '../../actions/sessions';
 import SignInForm from '../../components/SignInForm';
-import { Redirect } from '@reach/router';
+import { Redirect } from 'react-router-dom';
 
-export function SignIn({ signInRequest, userSignedIn }) {
+export function SignInView({ signInRequest, userSignedIn }) {
   const autoSubmit = () => {
-    signInRequest("jehowl4+educator@gmail.com", "password");
+    signInRequest('tyrell@example.net', 'password');
   }
 
   const handleSubmit = ({ email, password }, { setSubmitting }) => {
@@ -16,10 +16,10 @@ export function SignIn({ signInRequest, userSignedIn }) {
   }
 
 
-  const renderSignInPage = () => {
+  const renderSignInView = () => {
     return (
       <div data-testid="sign-in-view">
-        This is the sign in page.
+        This is the sign in view.
         <div onClick={autoSubmit}>
           Sign in
         </div>
@@ -31,16 +31,16 @@ export function SignIn({ signInRequest, userSignedIn }) {
   if (userSignedIn) {
     return <Redirect to='/' noThrow />
   } else {
-    return renderSignInPage();
+    return renderSignInView();
   }
 }
 
-SignIn.propTypes = {
+SignInView.propTypes = {
   signInRequest: PropTypes.func,
   userSignedIn: PropTypes.bool
 }
 
-SignIn.defaultProps = {
+SignInView.defaultProps = {
   userSignedIn: false
 }
 
@@ -52,4 +52,4 @@ const mapDispatchToProps = {
   signInRequest,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInView);

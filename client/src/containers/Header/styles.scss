@@ -1,44 +1,56 @@
 @import "../../components/App/variables.scss";
 
-.App__header {
-  padding: 30px 45px;
-}
-
 .Header {
   display: flex;
   justify-content: space-around;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0, 0.50);
-  font-size: 17px;
+  font-size: 16px;
   color: $dark-text-color;
+  flex-direction: row;
+}
+.Header__brand {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: baseline;
+}
+.Header__brand-text {
+  background: -webkit-linear-gradient(45deg, #091A49, #DE5DC3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  letter-spacing: 1.03;
+}
+.BrandIcon {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #DF6868, #8960DD);
+  box-shadow: 0px 1px 2px 1px rgba(155, 155, 155, 0.35);
+}
+.Header__brand-icon {
+  margin-right: 11px;
+}
 
-  &__brand {
-    display: flex;
-    font-weight: bold;
-  }
-  .Header__brand {
-    flex: 1 1 auto;
-    letter-spacing: 1.03;
-  }
+.Header__nav {
+  margin: 0px;
+  padding: 0px;
+  flex: 3 1 auto;
+}
 
-  .Header__nav {
-    margin: 0px;
-    padding: 0px;
-    flex: 3 1 auto;
-  }
-
-  .Header__session {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1 1 auto;
-  }
-  .Header__user-details {
-  }
-  .Header__icon {
-    margin-right: 15px;
-  }
-  .Header__user-name {
-    margin-right: 15px;
-  }
+.Header__session {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+}
+.Header__user-details {
+}
+.Header__icon {
+  margin-right: 15px;
+}
+.Header__user-name {
+  margin-right: 15px;
 }
 
 .Nav {
@@ -46,14 +58,14 @@
   display: flex;
   justify-content: space-around;
 
-  .Nav__item {
-    justify-content: space-between;
-  }
-  .Nav__icon {
-    margin-right: 15px;
-  }
-  .Nav__link {}
 }
+.Nav__item {
+  justify-content: space-between;
+}
+.Nav__icon {
+  margin-right: 15px;
+}
+.Nav__link {}
 
 .Link {
   text-decoration: none;
@@ -61,4 +73,68 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+/**
+* Styles for the third-party react-burger-menu component
+* Used as mobile nav
+**/
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: absolute;
+  width: 26px;
+  height: 17px;
+  right: 16px;
+  top: 12px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  // background: #373a47;
+  background: $dark-text-color;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: rgba(10, 27, 73, 0.86);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+  a {
+    padding: 0.8em;
+    color: white;
+  }
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

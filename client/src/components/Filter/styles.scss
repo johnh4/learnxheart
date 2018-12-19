@@ -1,0 +1,71 @@
+@import '../App/variables.scss';
+
+.Filter {
+  display: flex;
+  align-items: baseline;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Filter__items {
+  display: flex;
+  flex-direction: row;
+  font-weight: light;
+  flex-wrap: wrap;
+}
+
+.Filter__item {
+  display: flex;
+  font-size: 13px;
+  margin-right: 5px;
+  padding: 3px 18px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: $dark-text-color;
+  border-color: $dark-text-color;
+}
+.Filter__text {
+  padding-right: 5px;
+}
+.Filter__close {}
+.Filter__icon {
+  font-size: 11px;
+}
+
+.Filter__form {
+  display: flex;
+}
+.Filter__input {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.57px;
+  font-size: 13px;
+  opacity: 1;
+  background: rgba(255,255,255, 0);
+  box-shadow: none;
+  border:none;
+  outline: none;
+  border-bottom: 1px solid $dark-text-color;
+}
+.Filter__input::placeholder {
+  text-align: right;
+  color: $dark-text-color;
+  opacity: 0.62;
+  letter-spacing: 0.57px;
+}
+
+.Filter__submit-button {
+  font-size: 13px;
+  color: $dark-text-color;
+  border-color: $dark-text-color;
+}
+
+@media screen and (max-width: 767px) {
+  .Filter {
+    flex-direction: column;
+  }
+  .Filter__form {
+    order: -1;
+  }
+  .Filter__items {
+    margin-top: 15px;
+  }
+}

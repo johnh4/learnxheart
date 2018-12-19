@@ -1,7 +1,6 @@
 import { getEducators } from '../../reducers/educators';
 import * as actions from '../../actions/educators';
 import configureStore from '../../store/configureStore';
-import { mockResponse, setupStoreAndMockFetch } from '../../utils/testUtils';
 import axios from 'axios';
 
 jest.mock('axios');

@@ -1,0 +1,30 @@
+@import '../App/variables.scss';
+
+.Tabs {
+  display: flex;
+  font-size: 17px;
+}
+
+.Tab_active {
+  font-weight: 600;
+}
+
+.Tabs__tab {
+  font-family: 'Open Sans';
+  color: $dark-text-color;
+  text-decoration: none;
+}
+.Tabs__tab:hover {
+  text-decoration: underline;
+}
+.Tabs__tab::after {
+  content: "|";
+  margin-left: 15px;
+  margin-right: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  display: inline-block;
+}
+.Tabs__tab:last-child::after {
+  content: none;
+}

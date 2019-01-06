@@ -25,7 +25,7 @@ export function AppWrapper({ children, userSignedIn }) {
   );
 }
 AppWrapper.propTypes = {
-  userSignedIn: PropTypes.boolean
+  userSignedIn: PropTypes.bool
 }
 AppWrapper.defaultProps = {
   userSignedIn: false

@@ -25,7 +25,6 @@ export class EducatorDetail extends React.Component {
       loadEducatorRequest,
       match: { params: { educatorId } }
     } = this.props;
-    console.log('this.props.match', this.props.match);
     loadEducatorRequest(educatorId);
   }
 
@@ -41,7 +40,6 @@ export class EducatorDetail extends React.Component {
 
   render() {
     const { educator, courseIds  } = this.props;
-    console.log('educator in render', educator);
     const educatorName = `${educator.firstName} ${educator.lastName}`;
 
     return (
@@ -111,7 +109,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 EducatorDetail.propTypes = {
   educator: PropTypes.object,
-  courseIds: PropTypes.arrayOf(PropTypes.string),
+  courseIds: PropTypes.arrayOf(PropTypes.number),
   loadEducatorRequest: PropTypes.func
 }
 

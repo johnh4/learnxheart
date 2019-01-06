@@ -19,7 +19,7 @@ import { userSignedIn } from '../../selectors/sessions';
 
 export function AppWrapper({ children, userSignedIn }) {
   return (
-    <div className={`App ${userSignedIn ? 'App_signed-in' : ''}`}>
+    <div className={`App ${userSignedIn ? 'App_signed-in' : 'App_guest'}`}>
       {children}
     </div>
   );

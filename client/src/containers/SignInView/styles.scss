@@ -1,0 +1,28 @@
+@import '../../components/App/colors.scss';
+
+.SignInView {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+.SignInView__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0px 85px;
+}
+.SignInView__illustration-section {
+  background: linear-gradient($color-b-100, $color-a-100);
+}
+.SignInView__illustration {
+  display: flex;
+  width: 100%;
+  max-width: 357px;
+}
+.SignInView__form-section {
+  display: flex;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0, 0.5);
+}

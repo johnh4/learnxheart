@@ -18,7 +18,12 @@
 .App__header {
   padding: 22px 45px;
 }
-.App__container {
+.App_guest .App__header {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+.App_signed-in .App__container {
   padding: 40px 45px;
 }
 

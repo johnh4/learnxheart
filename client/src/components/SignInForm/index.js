@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import './styles.scss';
 
 export function SignInForm({onSubmit}) {
   const initialValues = {
@@ -35,18 +36,56 @@ function SignInFormComponent(props) {
   const { isSubmitting } = props
 
   return (
-    <Form className="form">
-      <label htmlFor="email">Email</label>
-      <Field type="email" name="email" className="form-field" aria-label="email"/>
-      <ErrorMessage name="email" component="div" />  
+    <Form className="SignInForm">
+      <div className="SignInForm__title">Sign In</div>
+      <div className="SignInForm__fields">
+        <label className="SignInForm__label" htmlFor="email">
+          Email
+        </label>
+        <Field
+          className="SignInForm__field form-field"
+          type="email"
+          name="email"
+          aria-label="email"
+          placeholder="you@example.com"
+        />
+        <ErrorMessage
+          className="SignInForm__error"
+          name="email"
+          component="div"
+        />  
 
-      <label htmlFor="password">Password</label>
-      <Field type="password" name="password" aria-label="password"/>
-      <ErrorMessage name="password" className="error" component="div" />  
+        <label className="SignInForm__label" htmlFor="password">
+          Password
+        </label>
+        <Field
+          className="SignInForm__field"
+          type="password"
+          name="password"
+          aria-label="password"
+          placeholder="password"
+        />
+        <ErrorMessage
+          className="SignInForm__error"
+          name="password"
+          component="div"
+        />  
+        <div className="SignInForm__forgot SignInForm__helper-text">
+          Forget your password?
+        </div>
+      </div>
 
-      <button type="submit" disabled={isSubmitting}>
-        Submit
+      <button
+        className="SignInForm__submit LightButton"
+        type="submit"
+        disabled={isSubmitting}
+      >
+        SIGN IN
       </button>
+
+      <div className="SignInForm__sign-up SignInForm__helper-text">
+        Don't have an account? Sign up!
+      </div>
     </Form>
   )
 }

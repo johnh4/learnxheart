@@ -1,11 +1,18 @@
 @import "../../components/App/variables.scss";
+@import "../../components/App/colors.scss";
 
 .Header {
   display: flex;
   justify-content: space-around;
   font-size: 13px;
-  color: white;
   flex-direction: row;
+}
+.Header_dark, .Header_dark .Link {
+  color: $color-b-100;
+  font-weight: 600;
+}
+.Header_light, .Header_light .Link {
+  color: white;
 }
 .Header__brand {
   display: flex;
@@ -61,7 +68,7 @@
 
 .Link {
   text-decoration: none;
-  color: white;
+  // color: white;
   &:hover {
     text-decoration: underline;
   }

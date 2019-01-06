@@ -113,8 +113,6 @@ function DesktopHeader({
   classes,
   userSignedIn,
   currentUser,
-  studentSignedIn,
-  educatorSignedIn,
   handleSignOut
 }) {
   function signedInContent() {
@@ -134,24 +132,30 @@ function DesktopHeader({
     )
   }
 
+  const style = userSignedIn ? 'Header_light' : 'Header_dark';
   return (
-    <header className={`Header Header__desktop ${classes}`} data-testid='header'>
+    <header
+      className={`Header Header__desktop ${classes} ${style}`}
+      data-testid='header'
+    >
       <Link to='/' className='Link Header__brand'>
         <Logo />
       </Link>
 
-      <ul className='Header__nav Nav'>
-        <li className='Nav__item'>
-          <Link to='/study' className='Link Nav__link'>
-            Study
-          </Link>
-        </li>
-        <li className='Nav__item'>
-          <Link to='/browse' className='Link Nav__link'>
-            Browse
-          </Link>
-        </li>
-      </ul>
+      {userSignedIn &&
+        <ul className='Header__nav Nav'>
+          <li className='Nav__item'>
+            <Link to='/study' className='Link Nav__link'>
+              Study
+            </Link>
+          </li>
+          <li className='Nav__item'>
+            <Link to='/browse' className='Link Nav__link'>
+              Browse
+            </Link>
+          </li>
+        </ul>
+      }
 
       <div className='Header__session'>
         { userSignedIn === true

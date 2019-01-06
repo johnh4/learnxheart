@@ -5,7 +5,7 @@ import { AppWrapper } from '../../components/App';
 import { MemoryRouter as Router } from 'react-router-dom';
 
 const AppDecorator = (storyFn) => (
-  <AppWrapper>{storyFn()}</AppWrapper>
+  <AppWrapper userSignedIn={true}>{storyFn()}</AppWrapper>
 );
 const RouterDecorator = (storyFn) => (
   <Router initialEntries={['/']}>

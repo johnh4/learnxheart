@@ -111,12 +111,14 @@ const mapStateToProps = (state, ownProps) => ({
 
 EducatorDetail.propTypes = {
   educator: PropTypes.object,
-  courseIds: PropTypes.arrayOf(PropTypes.string)
+  courseIds: PropTypes.arrayOf(PropTypes.string),
+  loadEducatorRequest: PropTypes.func
 }
 
 EducatorDetail.defaultProps = {
   educator: {},
-  courseIds: []
+  courseIds: [],
+  loadEducatorRequest: () => {}
 }
 
 export default connect(

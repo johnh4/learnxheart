@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import logo from '../../logo.svg';
 import './App.scss';
 import List from '../../List';
@@ -13,14 +14,28 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userSignedIn } from '../../selectors/sessions';
 
-export function AppWrapper({ children }) {
+export function AppWrapper({ children, userSignedIn }) {
   return (
-    <div className="App">
+    <div className={`App ${userSignedIn ? 'App_signed-in' : ''}`}>
       {children}
     </div>
   );
 }
+AppWrapper.propTypes = {
+  userSignedIn: PropTypes.boolean
+}
+AppWrapper.defaultProps = {
+  userSignedIn: false
+}
+
+const mapStateToProps = (state) => ({
+  userSignedIn: userSignedIn(state)
+});
+
+const AppWrapperContainer = connect(mapStateToProps)(AppWrapper);
 
 function AppContents() {
   return(
@@ -53,11 +68,12 @@ function AppContents() {
   );
 }
 
+
 function App() {
   return(
-    <AppWrapper>
+    <AppWrapperContainer>
       <AppContents />
-    </AppWrapper>
+    </AppWrapperContainer>
   );
 }
 

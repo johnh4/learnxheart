@@ -4,7 +4,7 @@ import { AppWrapper } from '../../components/App';
 import Logo from '.';
 
 const AppDecorator = (storyFn) => (
-  <AppWrapper>{storyFn()}</AppWrapper>
+  <AppWrapper userSignedIn={true}>{storyFn()}</AppWrapper>
 );
 
 const stories = storiesOf('Logo', module);

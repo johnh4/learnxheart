@@ -45,7 +45,7 @@ const reduxDecorator = (storyFn) => (
   <Provider store={store}>{storyFn()}</Provider>
 )
 const AppDecorator = (storyFn) => (
-  <AppWrapper>{storyFn()}</AppWrapper>
+  <AppWrapper userSignedIn={true}>{storyFn()}</AppWrapper>
 );
 
 const RouterDecorator = (storyFn) => (

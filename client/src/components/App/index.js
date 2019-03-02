@@ -79,7 +79,9 @@ function App() {
 
 function Dashboard() {
   return (
-    <header className="App-header" data-testid="dashboard-view">
+    <header className="Dashboard App__dashboard App-header"
+      data-testid="dashboard-view"
+    >
         <li className='Nav__item'>
           <Link to='/educators' className='Link Nav__link'>
             Educators

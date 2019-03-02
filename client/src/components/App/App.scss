@@ -19,12 +19,16 @@
   padding: 22px 45px;
 }
 .App_guest .App__header {
-  // position: absolute;
-  // left: 0px;
-  // right: 0px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
 }
 .App_signed-in .App__container {
   padding: 40px 45px;
+}
+
+.App__dashboard {
+  padding-top: 95px;
 }
 
 body {

@@ -57,8 +57,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
-  gem 'byebug'
+  # gem 'byebug'
   gem 'pry-byebug'
+  gem 'rb-readline'
 end
 
 group :test do

@@ -15,40 +15,45 @@ const RouterDecorator = (storyFn) => (
 
 const stories = storiesOf('Header', module);
 
-stories.addDecorator(AppDecorator);
 stories.addDecorator(RouterDecorator);
 
 stories.add('With no one signed in', () => (
-  <Header
-    userSignedIn={false}
-    currentUser={null}
-    classes='App__header'
-    signOutRequest={() => {}}
-    studentSignedIn={false}
-    educatorSignedIn={false}
-  />
+  <AppWrapper userSignedIn={false}>
+    <Header
+      userSignedIn={false}
+      currentUser={null}
+      classes='App__header'
+      signOutRequest={() => {}}
+      studentSignedIn={false}
+      educatorSignedIn={false}
+    />
+  </AppWrapper>
 ));
 
 stories.add('With a signed in educator', () => (
-  <Header
-    userSignedIn={true}
-    currentUser={educator}
-    classes='App__header'
-    signOutRequest={() => {}}
-    studentSignedIn={false}
-    educatorSignedIn={true}
-  />
+  <AppWrapper userSignedIn={true}>
+    <Header
+      userSignedIn={true}
+      currentUser={educator}
+      classes='App__header'
+      signOutRequest={() => {}}
+      studentSignedIn={false}
+      educatorSignedIn={true}
+    />
+  </AppWrapper>
 ));
 
 stories.add('With a signed in student', () => (
-  <Header
-    userSignedIn={true}
-    currentUser={student}
-    classes='App__header'
-    signOutRequest={() => {}}
-    studentSignedIn={true}
-    educatorSignedIn={false}
-  />
+  <AppWrapper userSignedIn={true}>
+    <Header
+      userSignedIn={true}
+      currentUser={student}
+      classes='App__header'
+      signOutRequest={() => {}}
+      studentSignedIn={true}
+      educatorSignedIn={false}
+    />
+  </AppWrapper>
 ));
 
 const educator = {

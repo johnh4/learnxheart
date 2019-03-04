@@ -2,11 +2,7 @@ import React from 'react';
 import EducatorDetail from '.';
 import { renderWithProviders } from '../../utils/testUtils';
 import axios from 'axios';
-import {
-  fireEvent,
-  within,
-  waitForElement
-} from 'react-testing-library';
+import { waitForElement } from 'react-testing-library';
 
 jest.mock('axios');
 

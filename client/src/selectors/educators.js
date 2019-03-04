@@ -19,7 +19,7 @@ export const selectEducators = (state) => state.entities.educators;
 export const selectEducatorByCourseIdProp = createSelector(
   selectCourseByCourseIdProp,
   selectEducators,
- (course, educators) => !!course && educators[course.educator]
+ (course, educators) => !!course && educators[course.educatorId]
 )
 
 /**

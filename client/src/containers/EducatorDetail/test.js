@@ -30,7 +30,7 @@ describe('EducatorDetail', () => {
     ));
 
     // execute
-    const { getByText } = renderWithProviders(
+    const { getByText, queryByText } = renderWithProviders(
       EducatorDetail,
       { route: '/1', withinRoute: true, routePath: '/:educatorId' }
     );

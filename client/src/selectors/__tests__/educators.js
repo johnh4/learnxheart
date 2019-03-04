@@ -58,7 +58,7 @@ const state = {
     courses: {
       2: {
         id: 2,
-        educator: 3
+        educatorId: 3
       }
     },
     educators

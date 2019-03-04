@@ -80,7 +80,7 @@ const filterCourses = (courses, educators, filters) => {
   let coursesArray = deepCloneArrayOfObjects(Object.values(courses));
   // coursesArray = Object.values(courses).slice(0);
   coursesArray.map(course => (
-    course.educator = educators[course.educator]
+    course.educator = educators[course.educatorId]
   ));
   filters.forEach(filter => {
     const options = {

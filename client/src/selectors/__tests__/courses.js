@@ -50,15 +50,15 @@ describe('courses selectors', () => {
 const courses = {
   "1": {
     id: 1,
-    educator: 1
+    educatorId: 1
   },
   "2": {
     id: 2,
-    educator: 1
+    educatorId: 1
   },
   "3": {
     id: 3,
-    educator: 2
+    educatorId: 2
   }
 }
 

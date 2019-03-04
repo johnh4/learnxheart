@@ -50,7 +50,7 @@ export const selectCourseIdsByEducatorIdProp = createCachedSelector(
   (courses, educatorId) => {
     const coursesArray = Object.values(courses);
     const filteredCourses = coursesArray.filter(course => (
-      course.educator === parseInt(educatorId)
+      course.educatorId === parseInt(educatorId)
     ));
     return filteredCourses.map(course => course.id);
   }

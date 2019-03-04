@@ -87,7 +87,7 @@ export class EducatorDetail extends React.Component {
           <div className="DetailCard__section">
             <div className="DetailCard__headline">Courses</div>
             <div className="EducatorDetail__course-items">
-              {courseIds.map(courseId => (
+              {educator.courses.map(courseId => (
                 <CourseListItem
                   courseId={courseId}
                   key={courseId}

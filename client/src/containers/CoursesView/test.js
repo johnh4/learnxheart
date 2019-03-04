@@ -117,7 +117,7 @@ describe('CoursesView Container', () => {
         await waitForElement(() => getByTestId('course-card'));
         expect(getByTestId('browse-courses-view')).toBeInTheDocument();
         expect(getByText(courses[0].name)).toBeInTheDocument();
-        const educator = educators[(courses[0].educator)];
+        const educator = educators[(courses[0].educatorId)];
         expect(
           getByText(`${educator.firstName} ${educator.lastName}`)
         ).toBeInTheDocument();
@@ -249,7 +249,7 @@ const courses = [
     id: 1,
     name: "Intro to Philosophy",
     educatorName: "Chelsea Ard",
-    educator: 9,
+    educatorId: 9,
     description:  "What is most real? Do humans have free will? Is there a best way to live? Is it better to be just or unjust (if one can get away with it)?",
     cardCount: 45,
     studentCount: 30,
@@ -259,7 +259,7 @@ const courses = [
     id: 2,
     name: "Mathematics 101",
     educatorName: "Carlton Banks",
-    educator: 10,
+    educatorId: 10,
     description:  "Math is good, math is great. Math is nice, math oh boy. This is some mathy content. It's easy.",
     cardCount: 20,
     studentCount: 50,
@@ -269,7 +269,7 @@ const courses = [
     id: 3,
     name: "Philosophy 201",
     educatorName: "Chelsea Ard",
-    educator: 9,
+    educatorId: 9,
     description:  "What is most real? Do humans have free will? Is there a best way to live? Is it better to be just or unjust (if one can get away with it)?",
     cardCount: 55,
     studentCount: 15,
@@ -279,7 +279,7 @@ const courses = [
     id: 4,
     name: "Mathematics 201",
     educatorName: "Carlton Banks",
-    educator: 10,
+    educatorId: 10,
     description:  "Mathematics includes the study of such topics as quantity, structure, space, and change. Mathematicians seek and use patterns to formulate new conjectures.",
     cardCount: 30,
     studentCount: 25,
@@ -292,7 +292,7 @@ const coursesWithCourseStudentRelationshps = [
     id: 1,
     name: "Intro to Philosophy",
     educatorName: "Chelsea Ard",
-    educator: 9,
+    educatorId: 9,
     description:  "What is most real? Do humans have free will? Is there a best way to live? Is it better to be just or unjust (if one can get away with it)?",
     cardCount: 45,
     studentCount: 30,
@@ -309,7 +309,7 @@ const coursesWithCourseStudentRelationshps = [
     id: 2,
     name: "Mathematics 101",
     educatorName: "Carlton Banks",
-    educator: 10,
+    educatorId: 10,
     description:  "Math is good, math is great. Math is nice, math oh boy. This is some mathy content. It's easy.",
     cardCount: 20,
     studentCount: 50,
@@ -326,7 +326,7 @@ const coursesWithCourseStudentRelationshps = [
     id: 3,
     name: "Philosophy 201",
     educatorName: "Chelsea Ard",
-    educator: 9,
+    educatorId: 9,
     description:  "What is most real? Do humans have free will? Is there a best way to live? Is it better to be just or unjust (if one can get away with it)?",
     cardCount: 55,
     studentCount: 15,
@@ -336,7 +336,7 @@ const coursesWithCourseStudentRelationshps = [
     id: 4,
     name: "Mathematics 201",
     educatorName: "Carlton Banks",
-    educator: 10,
+    educatorId: 10,
     description:  "Mathematics includes the study of such topics as quantity, structure, space, and change. Mathematicians seek and use patterns to formulate new conjectures.",
     cardCount: 30,
     studentCount: 25,

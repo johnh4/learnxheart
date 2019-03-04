@@ -59,7 +59,7 @@ const expectUserToBeAbleToSignIn = async (user) => {
   } = renderWithProviders(<App />, { route: '/sign-in'});
   const emailInput = getByLabelText(/email/i);
   const passwordInput = getByLabelText(/password/i);
-  const button = getByText(/submit/i);
+  const button = getByText(/SIGN IN/);
   expect(queryByText(/Sign Out/i)).not.toBeInTheDocument();
 
   // test

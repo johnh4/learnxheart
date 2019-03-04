@@ -37,7 +37,7 @@ function SignInFormComponent(props) {
 
   return (
     <Form className="SignInForm">
-      <div className="SignInForm__title">Sign In</div>
+      <div className="SignInForm__title">Welcome back</div>
       <div className="SignInForm__fields">
         <label className="SignInForm__label" htmlFor="email">
           Email

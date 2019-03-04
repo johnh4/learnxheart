@@ -21,6 +21,7 @@ it('renders without crashing', () => {
   const { getByTestId } = renderWithProviders(
     <HeaderComponent
       userSignedIn={false}
+      location={{pathname: '/'}}
     />
   );
   expect(getByTestId('header')).toBeInTheDocument();
@@ -36,18 +37,18 @@ describe('when a user is signed in', () => {
   it('contains a sign out link', () => {
     const { getByText } = setupHeaderWithSignedInUser();
 
-    expect(getByText('Sign Out')).toBeInTheDocument();
+    expect(getByText(/sign out/i)).toBeInTheDocument();
   });
 
   it('does not have a sign in link', () => {
     const { queryByText } = setupHeaderWithSignedInUser();
 
-    expect(queryByText('Sign In')).not.toBeInTheDocument();
+    expect(queryByText(/sign in/i)).not.toBeInTheDocument();
   });
 
   it('allows a user to sign out via the sign out link', async () => {
     const { signOutLinkMock, getByText } = setupHeaderWithSignedInUser();
-    const signOutLink = getByText('Sign Out');
+    const signOutLink = getByText(/sign out/i);
 
     fireEvent.click(signOutLink);
 
@@ -56,16 +57,22 @@ describe('when a user is signed in', () => {
 });
 
 describe('when a user is not signed in', () => {
-  it('has a sign in link', () => {
-    const { getByText } = setupHeaderWithoutUser();
+  it('and is not on the sign in page, there is a sign in link', () => {
+    const { queryByText } = setupHeaderWithoutUser('/');
 
-    expect(getByText('Sign In')).toBeInTheDocument();
+    expect(queryByText(/sign in/i)).toBeInTheDocument();
+  });
+
+  it('and is on the sign in page, there is not a sign in link', () => {
+    const { queryByText } = setupHeaderWithoutUser('/sign-in');
+
+    expect(queryByText(/sign in/i)).not.toBeInTheDocument();
   });
 
   it('does not have a sign out link', () => {
     const { queryByText } = setupHeaderWithoutUser();
 
-    expect(queryByText('Sign Out')).not.toBeInTheDocument();
+    expect(queryByText(/sign out/i)).not.toBeInTheDocument();
   });
 });
 
@@ -83,15 +90,19 @@ function setupHeaderWithSignedInUser() {
       userSignedIn={true}
       currentUser={user}
       signOutRequest={signOutLinkMock}
+      location={{pathname: '/'}}
     />
   );
   return { ...render, signOutLinkMock };
 }
 
-function setupHeaderWithoutUser() {
+function setupHeaderWithoutUser(path = '/') {
+  const location = { pathname: path };
   return renderWithProviders(
     <HeaderComponent
       userSignedIn={false}
-    />
+      location={location}
+    />,
+    { route: path }
   );
 }

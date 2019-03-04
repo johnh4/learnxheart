@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Logo from '../../components/Logo';
 import './styles.scss';
@@ -12,7 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBoxes,
   faChalkboardTeacher,
-  faAngleDown
+  faAngleDown,
+  faSearchLocation
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faStickyNote,
@@ -49,7 +50,8 @@ export class Header extends React.Component {
       currentUser,
       studentSignedIn,
       educatorSignedIn,
-      classes
+      classes,
+      location
     } = this.props;
 
     return (
@@ -64,6 +66,7 @@ export class Header extends React.Component {
                   studentSignedIn={studentSignedIn}
                   educatorSignedIn={educatorSignedIn}
                   handleSignOut={this.handleSignOut}
+                  pathName={location.pathname}
                 />
               : <MobileHeader
                   menuOpen={this.state.menuOpen}
@@ -106,14 +109,19 @@ const mapDispatchToProps = {
   signOutRequest
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+const headerWithRouter = withRouter(Header);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(headerWithRouter);
 
 
 function DesktopHeader({
   classes,
   userSignedIn,
   currentUser,
-  handleSignOut
+  handleSignOut,
+  pathName
 }) {
   function signedInContent() {
     return (
@@ -129,6 +137,14 @@ function DesktopHeader({
             Sign Out
         </Link>
       </React.Fragment>
+    )
+  }
+
+  function signedOutContent(pathName) {
+    return (
+      pathName === '/sign-in'
+        ? null
+        : <Link to='/sign-in' className='Link sign-in'>Sign In</Link>
     )
   }
 
@@ -160,7 +176,7 @@ function DesktopHeader({
       <div className='Header__session'>
         { userSignedIn === true
           ? signedInContent()
-          : <Link to='/sign-in' className='Link sign-in'>Sign In</Link>
+          : signedOutContent(pathName)
         }
       </div>
     </header>
@@ -172,7 +188,17 @@ DesktopHeader.propTypes = {
   userSignedIn: PropTypes.bool,
   currentUser: PropTypes.object,
   studentSignedIn: PropTypes.bool,
-  educatorSignedIn: PropTypes.bool
+  educatorSignedIn: PropTypes.bool,
+  pathName: PropTypes.string
+}
+
+DesktopHeader.defaultProps = {
+  classes: '',
+  userSignedIn: false,
+  currentUser: undefined,
+  studentSignedIn: false,
+  educatorSignedIn: false,
+  pathName: '/'
 }
 
 function MobileHeader({ menuOpen, closeMenu }) {

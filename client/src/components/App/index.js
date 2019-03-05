@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import logo from '../../logo.svg';
 import './App.scss';
-import List from '../../List';
 import Educators from '../Educators';
 import SignInView from '../../containers/SignInView';
 import Header from '../../containers/Header';
 import CoursesView from '../../containers/CoursesView';
 import ProtectedRoute from '../../containers/ProtectedRoute';
+import Home from '../../containers/Home';
 import BrowseView from '../../components/BrowseView';
 import { Link } from 'react-router-dom';
 import {
@@ -43,7 +44,7 @@ function AppContents() {
       <Header classes="App__header"/>
       <div className="App__container">
         <Switch>
-          <Route path="/" exact component={Dashboard} />
+          <Route path="/" exact component={Home} />
           <Route path="/educators" component={Educators} />
           <Route path="/sign-in" component={SignInView} />
 
@@ -72,46 +73,21 @@ function AppContents() {
 function App() {
   return(
     <AppWrapperContainer>
+      <Helmet>
+        <title>Learn X Heart</title>
+        <meta
+          name="description"
+          content="Spaced repetition for classrooms"
+        />
+      </Helmet>
       <AppContents />
     </AppWrapperContainer>
   );
 }
 
-function Dashboard() {
-  return (
-    <header className="Dashboard App__dashboard App-header"
-      data-testid="dashboard-view"
-    >
-        <li className='Nav__item'>
-          <Link to='/educators' className='Link Nav__link'>
-            Educators
-          </Link>
-        </li>
-        <li className='Nav__item'>
-          <Link to='/courses' className='Link Nav__link'>
-            Courses
-          </Link>
-        </li>
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-      <List />
-    </header>
-  );
-}
-
 function NotFound() {
   return (
-    <div data-testid="not-found-view">
+    <div className="NotFound App__not-found" data-testid="not-found-view">
       Sorry! We couldn't find that page.
     </div>
   );

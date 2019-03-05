@@ -1,4 +1,5 @@
 @import './colors.scss';
+@import './variables.scss';
 
 .App {
   min-height: 100vh;
@@ -16,7 +17,7 @@
 }
 
 .App__header {
-  padding: 22px 45px;
+  padding: 22px $page-side-padding;
 }
 .App_guest .App__header {
   position: absolute;
@@ -27,7 +28,7 @@
   padding: 40px 45px;
 }
 
-.App__dashboard {
+.App__not-found {
   padding-top: 95px;
 }
 

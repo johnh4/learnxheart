@@ -89,3 +89,14 @@
   border: none;
   letter-spacing: 1.37px;
 }
+
+@media screen and (max-width: 767px) {
+  .SignInForm__title {
+    margin: 29px 0px;
+    font-size: 24px;
+    text-align: center;
+  }
+  .SignInForm__label {
+    font-size: 14px;
+  }
+}

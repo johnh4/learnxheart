@@ -52,6 +52,11 @@
 .Header__user-name {
   margin-right: 15px;
 }
+.Header__mobile-logo {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+}
 
 .Nav {
   list-style: none;
@@ -82,27 +87,44 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: absolute;
-  width: 26px;
-  height: 17px;
-  right: 16px;
-  top: 12px;
+  width: 21px;
+  height: 18px;
+  right: 30px;
+  top: 27px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   // background: #373a47;
-  background: $dark-text-color;
+  background: $color-b-100;
+  height: 15% !important;
+  border-radius: 8px;
+}
+.bm-burger-bars:nth-of-type(1) {
+  left: 8px !important;
+}
+.bm-burger-bars:nth-of-type(3) {
+  right: 10px !important;
+}
+
+.bm-menu {
+  background: linear-gradient($color-b-100, $color-a-100) !important;
+  opacity: 0.97;
+  text-align: center;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
   height: 24px;
   width: 24px;
+  right: 26px !important;
+  top: 24px !important;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: white;
+  height: 20px !important;
 }
 
 /* General sidebar styles */
@@ -115,6 +137,10 @@
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
   fill: #373a47;
+}
+
+.bm-menu-wrap {
+  transition: none !important;
 }
 
 /* Wrapper for item list */
@@ -130,7 +156,6 @@
 /* Individual item */
 .bm-item {
   display: inline-block;
-  font-weight: bold;
 }
 
 /* Styling of overlay */

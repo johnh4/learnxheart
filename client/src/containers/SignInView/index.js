@@ -6,7 +6,7 @@ import { signInRequest } from '../../actions/sessions';
 import SignInForm from '../../components/SignInForm';
 import { Redirect } from 'react-router-dom';
 import './styles.scss';
-import authentication from '../../images/authentication.svg';
+import authentication from '../../images/authentication with beta.svg';
 
 export function SignInView({ signInRequest, userSignedIn }) {
   const autoSubmit = () => {

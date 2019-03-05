@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="440px" height="144px" viewBox="0 0 440 144" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Study</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="194" height="136" rx="27"></rect>
+        <filter x="-3.6%" y="-3.7%" width="107.2%" height="110.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.660076531   0 0 0 0 0.660076531   0 0 0 0 0.660076531  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-3" font-family="AppleColorEmoji, Apple Color Emoji" font-size="15" font-weight="normal" letter-spacing="0.906249642" fill="#091A49">
+            <tspan x="118" y="19">😄</tspan>
+        </text>
+        <filter x="-33.3%" y="-20.0%" width="166.7%" height="156.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.293761322 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-5" font-family="AppleColorEmoji, Apple Color Emoji" font-size="15" font-weight="normal" letter-spacing="0.906249642" fill="#091A49">
+            <tspan x="79" y="19">🙂</tspan>
+        </text>
+        <filter x="-33.3%" y="-20.0%" width="166.7%" height="156.0%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.293761322 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-7" font-family="AppleColorEmoji, Apple Color Emoji" font-size="15" font-weight="normal" letter-spacing="2.50961423" fill="#8D9AA9">
+            <tspan x="39" y="19">😑</tspan>
+        </text>
+        <filter x="-30.4%" y="-20.0%" width="160.9%" height="156.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.293761322 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-9" font-family="AppleColorEmoji, Apple Color Emoji" font-size="15" font-weight="normal" letter-spacing="0.906249642" fill="#091A49">
+            <tspan x="0" y="19">😬</tspan>
+        </text>
+        <filter x="-33.3%" y="-20.0%" width="166.7%" height="156.0%" filterUnits="objectBoundingBox" id="filter-10">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.293761322 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-11" x="0" y="0" width="194" height="108" rx="27"></rect>
+        <filter x="-3.6%" y="-4.6%" width="107.2%" height="113.0%" filterUnits="objectBoundingBox" id="filter-12">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.660076531   0 0 0 0 0.660076531   0 0 0 0 0.660076531  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Landing-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Oblong---light-Bg-Copy-10" transform="translate(-83.000000, -1384.000000)">
+            <g id="Features" transform="translate(0.000000, 803.000000)">
+                <g id="Feature-3" transform="translate(87.000000, 583.000000)">
+                    <g id="Study">
+                        <g id="Answer" transform="translate(238.000000, 0.000000)">
+                            <g id="Rectangle-14">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            </g>
+                            <g id="faces" transform="translate(28.000000, 95.000000)" fill-opacity="1">
+                                <g id="😄" fill="#091A49">
+                                    <use filter="url(#filter-4)" xlink:href="#text-3"></use>
+                                    <use xlink:href="#text-3"></use>
+                                </g>
+                                <g id="🙂" fill="#091A49">
+                                    <use filter="url(#filter-6)" xlink:href="#text-5"></use>
+                                    <use xlink:href="#text-5"></use>
+                                </g>
+                                <g id="😑" fill="#8D9AA9">
+                                    <use filter="url(#filter-8)" xlink:href="#text-7"></use>
+                                    <use xlink:href="#text-7"></use>
+                                </g>
+                                <g id="😬" fill="#091A49">
+                                    <use filter="url(#filter-10)" xlink:href="#text-9"></use>
+                                    <use xlink:href="#text-9"></use>
+                                </g>
+                            </g>
+                            <g id="Light-button" transform="translate(25.000000, 16.000000)">
+                                <rect id="Rectangle-13" fill="#DFF5F8" x="0" y="0" width="81.6" height="30" rx="15"></rect>
+                                <text id="Answer" font-family="AvenirNext-Bold, Avenir Next" font-size="12" font-weight="bold" letter-spacing="1.09846163" fill="#268097">
+                                    <tspan x="17.8246151" y="19">Answer</tspan>
+                                </text>
+                            </g>
+                            <rect id="Rectangle-15-Copy" fill="#E6E7E8" x="28" y="59" width="135" height="8" rx="4"></rect>
+                            <rect id="Rectangle-15-Copy-2" fill="#E6E7E8" x="28" y="79" width="66" height="8" rx="4"></rect>
+                        </g>
+                        <g id="Question">
+                            <g id="Rectangle-14">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-11"></use>
+                            </g>
+                            <g id="Light-button" transform="translate(25.000000, 16.000000)">
+                                <rect id="Rectangle-13" fill="#DFF5F8" x="0" y="0" width="84" height="30" rx="15"></rect>
+                                <text id="Question" font-family="AvenirNext-Bold, Avenir Next" font-size="12" font-weight="bold" letter-spacing="1.09846163" fill="#268097">
+                                    <tspan x="13.0761535" y="19">Question</tspan>
+                                </text>
+                            </g>
+                            <rect id="Rectangle-15-Copy" fill="#E6E7E8" x="28" y="59" width="135" height="8" rx="4"></rect>
+                            <rect id="Rectangle-15-Copy-2" fill="#E6E7E8" x="28" y="79" width="114" height="8" rx="4"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

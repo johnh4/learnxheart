@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="26px" viewBox="0 0 64 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Beta tag</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Landing-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Portrait" transform="translate(-220.000000, -122.000000)">
+            <g id="Beta-tag" transform="translate(220.000000, 123.000000)">
+                <g>
+                    <g id="My-book-Copy-3">
+                        <g id="Book">
+                            <rect id="Cover" stroke="#232A48" fill="#FFFFFF" x="1.0125" y="0" width="61.9875" height="24" rx="4"></rect>
+                            <g id="My-bindings" transform="translate(0.000000, 2.333333)" fill="#232A48">
+                                <rect id="Rectangle-4-Copy" x="0" y="17" width="2.3625" height="1"></rect>
+                                <rect id="Rectangle-4-Copy-2" x="0" y="11.3333333" width="2.3625" height="1"></rect>
+                                <rect id="Rectangle-4-Copy-3" x="0" y="5.66666667" width="2.3625" height="1"></rect>
+                                <rect id="Rectangle-4-Copy-4" x="0" y="0" width="2.3625" height="1"></rect>
+                            </g>
+                        </g>
+                    </g>
+                    <text id="BETA-Copy" font-family="AvenirNext-Heavy, Avenir Next" font-size="16" font-weight="600" fill="#FF5768">
+                        <tspan x="12" y="18">BETA</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

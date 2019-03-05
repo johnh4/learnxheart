@@ -97,7 +97,7 @@ const expectToBeAbleToNavigateToPage = async (viewTestId, linkText, initialState
     <App />,
     { initialState }
   );
-  expect(getByTestId('dashboard-view')).toBeInTheDocument();
+  expect(getByTestId('landing-page-view')).toBeInTheDocument();
   expect(queryByTestId(viewTestId)).not.toBeInTheDocument();
   const header = getByTestId('header');
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import './styles.scss';
 import { connect } from 'react-redux';
 import {
@@ -28,7 +29,12 @@ export class CourseDetail extends React.Component {
       >
         <div className="CourseDetail__header">
           <div className="CourseDetail__educator-name">
-            by {educatorName}
+            by <NavLink
+              to={`/browse/educators/${course.educatorId}`}
+              className="CourseListItem__course-name"
+            >
+              {educatorName}
+            </NavLink>
           </div>
           <div className="CourseDetail__follow-button LightButton">
             <FontAwesomeIcon icon={faPlus} className="LightButton__icon"/>

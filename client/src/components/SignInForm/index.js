@@ -71,7 +71,7 @@ function SignInFormComponent(props) {
           component="div"
         />  
         <div className="SignInForm__forgot SignInForm__helper-text">
-          Forget your password?
+          {/* Forget your password? */}
         </div>
       </div>
 
@@ -84,7 +84,8 @@ function SignInFormComponent(props) {
       </button>
 
       <div className="SignInForm__sign-up SignInForm__helper-text">
-        Don't have an account? Sign up!
+        {/* Don't have an account? Sign up! */}
+        Don't have a beta account? Check back soon!
       </div>
     </Form>
   )

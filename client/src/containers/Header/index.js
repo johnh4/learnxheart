@@ -13,7 +13,6 @@ import {
   faBoxes,
   faChalkboardTeacher,
   faAngleDown,
-  faSearchLocation
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faStickyNote,

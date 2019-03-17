@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import logo from '../../logo.svg';
 import './App.scss';
 import Educators from '../Educators';
 import SignInView from '../../containers/SignInView';
@@ -10,7 +9,6 @@ import CoursesView from '../../containers/CoursesView';
 import ProtectedRoute from '../../containers/ProtectedRoute';
 import Home from '../../containers/Home';
 import BrowseView from '../../components/BrowseView';
-import { Link } from 'react-router-dom';
 import {
   Route,
   Switch

@@ -87,7 +87,11 @@
 
 .LightButton {
   border: none;
+  cursor: pointer;
   letter-spacing: 1.37px;
+}
+.LightButton:hover {
+  background: $color-a-10;
 }
 
 @media screen and (max-width: 767px) {

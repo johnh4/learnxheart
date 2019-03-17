@@ -65,7 +65,7 @@ export class BrowseCourses extends React.Component {
   }
 
   render() {
-    const { courseIds, match, courseFilters } = this.props;
+    const { courseIds, match } = this.props;
     const routes = {
       detail: <Route path={`${match.url}/:courseId`} component={CourseDetail} />,
       empty: <Route exact path={`${match.url}`} component={CourseDetailEmpty} />

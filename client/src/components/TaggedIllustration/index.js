@@ -17,8 +17,8 @@ export default function TaggedIllustration({
   )
 }
 
-TaggedIllustration.PropTypes = {
-  tag: PropTypes.src,
+TaggedIllustration.propTypes = {
+  tag: PropTypes.any.isRequired,
   children: PropTypes.node,
   classes: PropTypes.string
 }

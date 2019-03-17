@@ -5,6 +5,8 @@ import { userSignedIn } from '../../selectors/sessions';
 import { signInRequest } from '../../actions/sessions';
 import SignInForm from '../../components/SignInForm';
 import { Redirect } from 'react-router-dom';
+import './styles.scss';
+import authentication from '../../images/authentication with beta.svg';
 
 export function SignInView({ signInRequest, userSignedIn }) {
   const autoSubmit = () => {
@@ -18,12 +20,20 @@ export function SignInView({ signInRequest, userSignedIn }) {
 
   const renderSignInView = () => {
     return (
-      <div data-testid="sign-in-view">
-        This is the sign in view.
-        <div onClick={autoSubmit}>
-          Sign in
-        </div>
-        <SignInForm onSubmit={handleSubmit}/>
+      <div className="SignInView" data-testid="sign-in-view">
+        <section
+          className="SignInView__illustration-section SignInView__section"
+        >
+          <img
+            src={authentication}
+            className="SignInView__illustration"
+            alt="Person signing in"
+            onClick={autoSubmit}
+          />
+        </section>
+        <section className="SignInView__form-section SignInView__section">
+          <SignInForm onSubmit={handleSubmit}/>
+        </section>
       </div>
     )
   }

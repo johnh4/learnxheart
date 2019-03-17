@@ -1,25 +1,42 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import logo from '../../logo.svg';
 import './App.scss';
-import pinkPolygons from '../../images/pink-polygons.png';
-import List from '../../List';
 import Educators from '../Educators';
 import SignInView from '../../containers/SignInView';
 import Header from '../../containers/Header';
 import CoursesView from '../../containers/CoursesView';
 import ProtectedRoute from '../../containers/ProtectedRoute';
+import Home from '../../containers/Home';
+import BrowseView from '../../components/BrowseView';
+import { Link } from 'react-router-dom';
 import {
   Route,
   Switch
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userSignedIn } from '../../selectors/sessions';
 
-export function AppWrapper({ children }) {
+export function AppWrapper({ children, userSignedIn }) {
   return (
-    <div className="App" style={ { backgroundImage: `url(${pinkPolygons})` }}>
+    <div className={`App ${userSignedIn ? 'App_signed-in' : 'App_guest'}`}>
       {children}
     </div>
   );
 }
+AppWrapper.propTypes = {
+  userSignedIn: PropTypes.bool
+}
+AppWrapper.defaultProps = {
+  userSignedIn: false
+}
+
+const mapStateToProps = (state) => ({
+  userSignedIn: userSignedIn(state)
+});
+
+const AppWrapperContainer = connect(mapStateToProps)(AppWrapper);
 
 function AppContents() {
   return(
@@ -27,7 +44,7 @@ function AppContents() {
       <Header classes="App__header"/>
       <div className="App__container">
         <Switch>
-          <Route path="/" exact component={Dashboard} />
+          <Route path="/" exact component={Home} />
           <Route path="/educators" component={Educators} />
           <Route path="/sign-in" component={SignInView} />
 
@@ -43,6 +60,8 @@ function AppContents() {
             component={CoursesView}
           />
 
+          <ProtectedRoute path="/browse" component={BrowseView} />
+
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -50,37 +69,25 @@ function AppContents() {
   );
 }
 
+
 function App() {
   return(
-    <AppWrapper>
+    <AppWrapperContainer>
+      <Helmet>
+        <title>Learn X Heart</title>
+        <meta
+          name="description"
+          content="Spaced repetition for classrooms"
+        />
+      </Helmet>
       <AppContents />
-    </AppWrapper>
-  );
-}
-
-function Dashboard() {
-  return (
-    <header className="App-header" data-testid="dashboard-view">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-      <List />
-    </header>
+    </AppWrapperContainer>
   );
 }
 
 function NotFound() {
   return (
-    <div data-testid="not-found-view">
+    <div className="NotFound App__not-found" data-testid="not-found-view">
       Sorry! We couldn't find that page.
     </div>
   );

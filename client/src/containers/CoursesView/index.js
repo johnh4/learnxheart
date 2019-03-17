@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import CardSection from '../../components/CardSection';
 import CourseCard from '../../components/CourseCard';
 import Filter from '../../components/Filter';
-import PageHeader from '../../components/PageHeader';
+import ViewHeader from '../../components/ViewHeader';
 import LinkButton from '../../components/LinkButton';
 import Section from '../../components/Section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -160,7 +160,7 @@ export class CoursesViewComponent extends React.Component {
 
     return (
       <div className="CoursesView" data-testid={dataTestId}>
-        <PageHeader
+        <ViewHeader
           mainIcon={<FontAwesomeIcon icon={faBook} />}
           smallIcons={smallIcons}
           title={tab}

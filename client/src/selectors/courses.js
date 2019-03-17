@@ -34,3 +34,24 @@ export const selectCourseByCourseIdProp = createCachedSelector(
   (_, props) => props.courseId,
   (courses, courseId) => courses[courseId]
 )((_, { courseId }) => courseId);
+
+
+/**
+ * Uses state and params to get an educator's courses from state
+ * Cached by educatorId
+ * @param  {object} state
+ * @param  {object} params
+ * @param  {number} params.educatorId   The educator's id within params
+ * @return {number[]}                   The course ids
+ */
+export const selectCourseIdsByEducatorIdProp = createCachedSelector(
+  selectCourses,
+  (_, props) => props.educatorId,
+  (courses, educatorId) => {
+    const coursesArray = Object.values(courses);
+    const filteredCourses = coursesArray.filter(course => (
+      course.educatorId === parseInt(educatorId)
+    ));
+    return filteredCourses.map(course => course.id);
+  }
+)((_, { educatorId }) => educatorId);

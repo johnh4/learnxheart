@@ -1,0 +1,102 @@
+@import '../App/colors.scss';
+
+.SignInForm {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 470px;
+  justify-content: center;
+}
+
+.SignInForm__title {
+  margin-bottom: 38px;
+
+  color: $color-a-100;
+  font-size: 36px;
+}
+
+.SignInForm__label {
+  margin: 20px 0px 12px 0px;
+
+  color: $color-a-100;
+  font-size: 18px;
+  font-weight: 600;
+}
+.SignInForm__label:first-of-type {
+  margin-top: 0px;
+}
+
+.SignInForm__fields {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-bottom: 1px solid $color-g-40;
+  margin-bottom: 20px;
+}
+.SignInForm__field {
+  display: flex;
+  flex-grow: 1;
+
+  font-family: "Open Sans", sans-serif;
+  min-height: 30px;
+  box-shadow: none;
+  border:none;
+  outline: none;
+
+  border-radius: 4px;
+  background: $color-g-40;
+  font-size: 15px;
+  padding: 5px 22px;
+}
+.SignInForm__field::placeholder {
+  color: $color-g-100;
+  letter-spacing: 0.87px;
+}
+.SignInForm__forgot {
+  margin: 12px 0px 20px 0px;
+}
+.SignInForm__error {
+  color: $color-r-100;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.SignInForm__helper-text {
+  color: $color-g-80;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+
+.SignInForm__sign-up {
+  align-self: flex-end;
+}
+
+.SignInForm__divider {
+  margin-bottom: 20px;
+
+  height: 1px;
+  width: 100%;
+  background: $color-g-40;
+}
+
+.SignInForm__submit {
+  align-self: flex-end;
+  margin-bottom: 20px;
+}
+
+.LightButton {
+  border: none;
+  letter-spacing: 1.37px;
+}
+
+@media screen and (max-width: 767px) {
+  .SignInForm__title {
+    margin: 29px 0px;
+    font-size: 24px;
+    text-align: center;
+  }
+  .SignInForm__label {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="27px" viewBox="0 0 29 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="1.125" y="0" width="27.375" height="27" rx="4"></rect>
+        <path d="M6.95655896,0.927008214 L6.95655896,0.886670314 C6.95655896,0.886670314 1.00568715,-1.83146291 0.142648873,2.25047489 C-0.212962174,3.93241903 -0.0113044963,5.84786456 2.00029503,8.35042069 C3.95556902,10.7829043 6.7923871,12.1281051 6.94971805,12.2015302 L6.94971805,12.2481335 C6.94971805,12.2481335 9.89438246,10.8964052 11.905982,8.39384906 C13.9175815,5.89129293 14.1192392,3.9758474 13.7636281,2.29390326 C12.9175878,-1.7076388 7.18215501,0.82566662 6.95655896,0.927008215 Z" id="path-2"></path>
+        <filter x="-50.3%" y="-40.8%" width="200.7%" height="214.3%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LxH-logo---red" transform="translate(0.000000, -1.000000)">
+            <g id="logo">
+                <g transform="translate(0.000000, 1.000000)">
+                    <g id="Book">
+                        <g id="Cover">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            <rect stroke="#979797" stroke-width="1" x="1.625" y="0.5" width="26.375" height="26" rx="4"></rect>
+                        </g>
+                        <g id="My-bindings" transform="translate(0.000000, 2.625000)" fill="#FFFFFF">
+                            <rect id="Rectangle-4-Copy" x="0" y="19.125" width="2.625" height="1"></rect>
+                            <rect id="Rectangle-4-Copy-2" x="0" y="12.75" width="2.625" height="1"></rect>
+                            <rect id="Rectangle-4-Copy-3" x="0" y="6.375" width="2.625" height="1"></rect>
+                            <rect id="Rectangle-4-Copy-4" x="0" y="0" width="2.625" height="1"></rect>
+                        </g>
+                    </g>
+                    <g id="Heart-2-Copy-3" transform="translate(7.903846, 7.240385)">
+                        <g id="Combined-Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="#FF5768" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

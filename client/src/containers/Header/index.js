@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Logo from '../../components/Logo';
 import './styles.scss';
 import '../../components/App/App.scss';
 import { signOutRequest } from '../../actions/sessions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStickyNote, faCheckSquare, faUser, } from '@fortawesome/free-regular-svg-icons';
-import { faBoxes, faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 import { slide as Menu } from 'react-burger-menu';
 import Media from 'react-media';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBoxes,
+  faChalkboardTeacher,
+  faAngleDown,
+  faSearchLocation
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faStickyNote,
+  faCheckSquare
+} from '@fortawesome/free-regular-svg-icons';
 import {
   userSignedIn,
   educatorSignedIn,
@@ -41,7 +50,8 @@ export class Header extends React.Component {
       currentUser,
       studentSignedIn,
       educatorSignedIn,
-      classes
+      classes,
+      location
     } = this.props;
 
     return (
@@ -56,10 +66,15 @@ export class Header extends React.Component {
                   studentSignedIn={studentSignedIn}
                   educatorSignedIn={educatorSignedIn}
                   handleSignOut={this.handleSignOut}
+                  pathName={location.pathname}
                 />
               : <MobileHeader
                   menuOpen={this.state.menuOpen}
+                  userSignedIn={userSignedIn}
                   closeMenu={this.closeMenu}
+                  pathName={location.pathname}
+                  currentUser={currentUser}
+                  classes={classes}
                 />
           }
         </Media>
@@ -98,16 +113,19 @@ const mapDispatchToProps = {
   signOutRequest
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+const headerWithRouter = withRouter(Header);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(headerWithRouter);
 
 
 function DesktopHeader({
   classes,
   userSignedIn,
   currentUser,
-  studentSignedIn,
-  educatorSignedIn,
-  handleSignOut
+  handleSignOut,
+  pathName
 }) {
   function signedInContent() {
     return (
@@ -115,20 +133,10 @@ function DesktopHeader({
         <div className='Header__user-name user-name'>
           {currentUser.firstName}
         </div>
-        { educatorSignedIn &&
-          <FontAwesomeIcon
-            icon={faChalkboardTeacher}
-            className='Header__icon'
-            data-testid='educator-header-icon'
-          />
-        }
-        { studentSignedIn &&
-          <FontAwesomeIcon
-            icon={faUser}
-            className='Header__icon'
-            data-testid='student-header-icon'
-          />
-        }
+        <FontAwesomeIcon
+          icon={faAngleDown}
+          className='Header__icon'
+        />
         <Link to='#' className='Link sign-out' onClick={handleSignOut} data-testid='header-sign-out'>
             Sign Out
         </Link>
@@ -136,50 +144,43 @@ function DesktopHeader({
     )
   }
 
+  function signedOutContent(pathName) {
+    return (
+      pathName === '/sign-in'
+        ? null
+        : <Link to='/sign-in' className='Link sign-in'>Sign In</Link>
+    )
+  }
+
+  const style = userSignedIn ? 'Header_light' : 'Header_dark';
   return (
-    <header className={`Header Header__desktop ${classes}`} data-testid='header'>
+    <header
+      className={`Header Header__desktop ${classes} ${style}`}
+      data-testid='header'
+    >
       <Link to='/' className='Link Header__brand'>
-        <span className='BrandIcon Header__brand-icon'></span>
-        <span className='Header__brand-text'>learnxheart</span>
+        <Logo />
       </Link>
 
-      <ul className='Header__nav Nav'>
-        <li className='Nav__item'>
-          <Link to='/educators' className='Link Nav__link'>
-            <FontAwesomeIcon icon={faChalkboardTeacher} className='Nav__icon' />
-            Educators
-          </Link>
-        </li>
-        <li className='Nav__item'>
-          <Link to='/courses' className='Link Nav__link'>
-            <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
-            Courses
-          </Link>
-        </li>
-        <li className='Nav__item'>
-          <Link to='/courses/browse' className='Link Nav__link'>
-            <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
-            Browse
-          </Link>
-        </li>
-        <li className='Nav__item'>
-          <Link to='/decks' className='Link Nav__link'>
-            <FontAwesomeIcon icon={faStickyNote} className='Nav__icon' />
-            Decks
-          </Link>
-        </li>
-        <li className='Nav__item'>
-          <Link to='/study' className='Link Nav__link'>
-            <FontAwesomeIcon icon={faCheckSquare} className='Nav__icon' />
-            Study
-          </Link>
-        </li>
-      </ul>
+      {userSignedIn &&
+        <ul className='Header__nav Nav'>
+          <li className='Nav__item'>
+            <Link to='/study' className='Link Nav__link'>
+              Study
+            </Link>
+          </li>
+          <li className='Nav__item'>
+            <Link to='/browse' className='Link Nav__link'>
+              Browse
+            </Link>
+          </li>
+        </ul>
+      }
 
       <div className='Header__session'>
         { userSignedIn === true
           ? signedInContent()
-          : <Link to='/sign-in' className='Link sign-in'>Sign In</Link>
+          : signedOutContent(pathName)
         }
       </div>
     </header>
@@ -191,41 +192,95 @@ DesktopHeader.propTypes = {
   userSignedIn: PropTypes.bool,
   currentUser: PropTypes.object,
   studentSignedIn: PropTypes.bool,
-  educatorSignedIn: PropTypes.bool
+  educatorSignedIn: PropTypes.bool,
+  pathName: PropTypes.string
 }
 
-function MobileHeader({ menuOpen, closeMenu }) {
-  return (
-    <Menu isOpen={menuOpen} className="Header__mobile">
-      <Link to='/' className='Link menu-item' onClick={closeMenu}>
-        Learn X Heart
-      </Link>
-      <Link to='/educators' className='Link Nav__link' onClick={closeMenu}>
-        <FontAwesomeIcon icon={faChalkboardTeacher} className='Nav__icon' />
-        Educators
-      </Link>
-      <Link to='/courses' className='Link Nav__link' onClick={closeMenu}>
-        <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
-        Courses
-      </Link>
-      <Link to='/decks' className='Link Nav__link' onClick={closeMenu}>
-        <FontAwesomeIcon icon={faStickyNote} className='Nav__icon' />
-        Decks
-      </Link>
-      <Link to='/study' className='Link Nav__link' onClick={closeMenu}>
-        <FontAwesomeIcon icon={faCheckSquare} className='Nav__icon' />
-        Study
-      </Link>
-    </Menu>
-  );
+DesktopHeader.defaultProps = {
+  classes: '',
+  userSignedIn: false,
+  currentUser: undefined,
+  studentSignedIn: false,
+  educatorSignedIn: false,
+  pathName: '/'
+}
+
+function MobileHeader({
+  menuOpen,
+  closeMenu,
+  pathName,
+  userSignedIn,
+}) {
+  const headerlessPaths = ['/sign-in'];
+
+  function signedInContent() {
+    return (
+      <Menu right isOpen={menuOpen} className="Header__mobile">
+        <Link to='/' className='Link menu-item' onClick={closeMenu}>
+          Learn X Heart
+        </Link>
+        <Link to='/educators' className='Link Nav__link' onClick={closeMenu}>
+          <FontAwesomeIcon icon={faChalkboardTeacher} className='Nav__icon' />
+          Educators
+        </Link>
+        <Link to='/courses' className='Link Nav__link' onClick={closeMenu}>
+          <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
+          Courses
+        </Link>
+        <Link to='/browse' className='Link Nav__link' onClick={closeMenu}>
+          <FontAwesomeIcon icon={faBoxes} className='Nav__icon' />
+          Browse
+        </Link>
+        <Link to='/decks' className='Link Nav__link' onClick={closeMenu}>
+          <FontAwesomeIcon icon={faStickyNote} className='Nav__icon' />
+          Decks
+        </Link>
+        <Link to='/study' className='Link Nav__link' onClick={closeMenu}>
+          <FontAwesomeIcon icon={faCheckSquare} className='Nav__icon' />
+          Study
+        </Link>
+      </Menu>
+    )
+  }
+
+  function signedOutContent() {
+    return (
+      <Menu right width={'100%'} isOpen={menuOpen} className="Header__mobile">
+        <Logo classes={"Header__mobile-logo"} />
+        <Link to='/' className='Link menu-item' onClick={closeMenu}>
+          Home
+        </Link>
+        <Link to='/sign-in' className='Link Nav__link' onClick={closeMenu}>
+          Sign In
+        </Link>
+        <Link to='/sign-up' className='Link Nav__link' onClick={closeMenu}>
+          Sign Up
+        </Link>
+      </Menu>
+    )
+  }
+
+  if (headerlessPaths.indexOf(pathName) > -1) {
+    return null;
+  } else {
+    return (
+      userSignedIn
+        ? signedInContent()
+        : signedOutContent()
+    );
+  }
 }
 
 MobileHeader.propTypes = {
   menuOpen: PropTypes.bool,
-  closeMenu: PropTypes.func
+  closeMenu: PropTypes.func,
+  userSignedIn: PropTypes.bool,
+  pathName: PropTypes.string
 }
 
 MobileHeader.defaultProps = {
   menuOpen: false,
-  closeMenu: () => {}
+  closeMenu: () => {},
+  userSignedIn: false,
+  pathName: '/'
 }

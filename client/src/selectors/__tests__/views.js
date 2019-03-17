@@ -2,6 +2,7 @@ import {
   selectFilters,
   selectCourseFilters,
   selectFilteredCourses,
+  selectFilteredEducators,
   selectFilteredCoursesCurrentStudentIsFollowing
 } from '../views';
 
@@ -49,6 +50,15 @@ describe('View selectors', () => {
     });
   });
 
+  describe('selectFilteredEducators', () => {
+    test('returns educators filtered by name', () => {
+      const actualResult = selectFilteredEducators(getState(['chelsea']));
+
+      const expectedResult = [7];
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
+
   describe('selectFilteredCoursesCurrentStudentIsFollowing', () => {
     test('returns filtered courses that the student is following', () => {
       const state = getState(['philosophy']);
@@ -67,17 +77,17 @@ const getState = (filters = courseFilters) => ({
     courses: {
       '2': {
         id: 2,
-        educator: 7,
+        educatorId: 7,
         name: 'Philosophy 101'
       },
       '4': {
         id: 4,
-        educator: 8,
+        educatorId: 8,
         name: 'Engineering 101'
       },
       '7': {
         id: 7,
-        educator: 7,
+        educatorId: 7,
         name: 'Health'
       }
     },
@@ -122,20 +132,3 @@ const getState = (filters = courseFilters) => ({
     }
   }
 });
-
-// const courseStudentRelationships = {
-//   1: {
-//     id: 1,
-//     courseId: 2,
-//     studentId: 3
-//   },
-//   2: {
-//     id: 2,
-//     courseId: 3,
-//     studentId: 3
-//   }
-// }
-
-// const state = {
-//   entities: { courseStudentRelationships }
-// }

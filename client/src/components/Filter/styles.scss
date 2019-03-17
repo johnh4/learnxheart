@@ -1,13 +1,16 @@
 @import '../App/variables.scss';
+@import '../App/colors.scss';
 
 .Filter {
   display: flex;
+  flex-direction: column;
   align-items: baseline;
   font-family: 'Open Sans', sans-serif;
 }
 
 .Filter__items {
   display: flex;
+  margin-top: 15px;
   flex-direction: row;
   font-weight: light;
   flex-wrap: wrap;
@@ -15,40 +18,59 @@
 
 .Filter__item {
   display: flex;
-  font-size: 13px;
   margin-right: 5px;
+  margin-bottom: 8px;
   padding: 3px 18px;
+
+  // letter-spacing: 1.28px;
+  letter-spacing: 0.79px;
+  font-size: 14px;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  color: $dark-text-color;
-  border-color: $dark-text-color;
+  font-weight: 700;
+  color: $color-a-100;
+
+  background: white;
+  border-color: white;
 }
 .Filter__text {
-  padding-right: 5px;
+  padding-right: 16px;
 }
 .Filter__close {}
-.Filter__icon {
+.Filter__add-icon {
   font-size: 11px;
+}
+.Filter__filter-icon {
+  position: absolute;
+  left: 18px;
+  top: 8px;
+  color: white;
+  font-size: 10px;
 }
 
 .Filter__form {
   display: flex;
+  align-self: stretch;
+  position: relative;
 }
 .Filter__input {
+  flex-grow: 1;
+  background: #7184B7;
+  border-radius: 5px;
+  padding: 5px 16px;
+  padding-left: 45px;
+
+  color: white;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 0.57px;
   font-size: 13px;
-  opacity: 1;
-  background: rgba(255,255,255, 0);
+
   box-shadow: none;
   border:none;
   outline: none;
-  border-bottom: 1px solid $dark-text-color;
 }
 .Filter__input::placeholder {
   text-align: right;
-  color: $dark-text-color;
-  opacity: 0.62;
+  color: white;
   letter-spacing: 0.57px;
 }
 

@@ -6,7 +6,7 @@ import './styles.scss';
 import { AppWrapper } from '../../components/App';
 
 const AppDecorator = (storyFn) => (
-  <AppWrapper>{storyFn()}</AppWrapper>
+  <AppWrapper userSignedIn={true}>{storyFn()}</AppWrapper>
 );
 
 const stories = storiesOf('Filter', module);

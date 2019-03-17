@@ -1,12 +1,18 @@
 @import "../../components/App/variables.scss";
+@import "../../components/App/colors.scss";
 
 .Header {
   display: flex;
   justify-content: space-around;
-  box-shadow: 0px 2px 4px 0px rgba(0,0,0, 0.50);
-  font-size: 16px;
-  color: $dark-text-color;
+  font-size: 13px;
   flex-direction: row;
+}
+.Header_dark, .Header_dark .Link {
+  color: $color-b-100;
+  font-weight: 600;
+}
+.Header_light, .Header_light .Link {
+  color: white;
 }
 .Header__brand {
   display: flex;
@@ -14,49 +20,47 @@
   align-items: baseline;
 }
 .Header__brand-text {
-  background: -webkit-linear-gradient(45deg, #091A49, #DE5DC3);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   font-weight: 600;
   letter-spacing: 1.03;
 }
 .BrandIcon {
-  display: inline-block;
-  height: 14px;
-  width: 14px;
-  border-radius: 2px;
-  background: linear-gradient(135deg, #DF6868, #8960DD);
-  box-shadow: 0px 1px 2px 1px rgba(155, 155, 155, 0.35);
 }
 .Header__brand-icon {
-  margin-right: 11px;
 }
 
 .Header__nav {
   margin: 0px;
   padding: 0px;
-  flex: 3 1 auto;
+  flex-basis: 152px;
+  justify-content: space-between;
 }
 
 .Header__session {
   display: flex;
   justify-content: flex-end;
+  align-items: baseline;
   flex: 1 1 auto;
 }
 .Header__user-details {
 }
 .Header__icon {
   margin-right: 15px;
+  position: relative;
+  top: 3px;
+  font-size: 15px;
 }
 .Header__user-name {
   margin-right: 15px;
+}
+.Header__mobile-logo {
+  position: absolute;
+  top: 26px;
+  left: 26px;
 }
 
 .Nav {
   list-style: none;
   display: flex;
-  justify-content: space-around;
 
 }
 .Nav__item {
@@ -69,7 +73,7 @@
 
 .Link {
   text-decoration: none;
-  color: $dark-text-color;
+  // color: white;
   &:hover {
     text-decoration: underline;
   }
@@ -83,27 +87,44 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: absolute;
-  width: 26px;
-  height: 17px;
-  right: 16px;
-  top: 12px;
+  width: 21px;
+  height: 18px;
+  right: 30px;
+  top: 27px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   // background: #373a47;
-  background: $dark-text-color;
+  background: $color-b-100;
+  height: 15% !important;
+  border-radius: 8px;
+}
+.bm-burger-bars:nth-of-type(1) {
+  left: 8px !important;
+}
+.bm-burger-bars:nth-of-type(3) {
+  right: 10px !important;
+}
+
+.bm-menu {
+  background: linear-gradient($color-b-100, $color-a-100) !important;
+  opacity: 0.97;
+  text-align: center;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
   height: 24px;
   width: 24px;
+  right: 26px !important;
+  top: 24px !important;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: white;
+  height: 20px !important;
 }
 
 /* General sidebar styles */
@@ -116,6 +137,10 @@
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
   fill: #373a47;
+}
+
+.bm-menu-wrap {
+  transition: none !important;
 }
 
 /* Wrapper for item list */
@@ -131,7 +156,6 @@
 /* Individual item */
 .bm-item {
   display: inline-block;
-  font-weight: bold;
 }
 
 /* Styling of overlay */

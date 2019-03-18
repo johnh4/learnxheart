@@ -1,8 +1,9 @@
 {
   "name": "learnxheart",
+  "license": "MIT",
   "engines": {
-    "node": "8.9.4",
-    "yarn": "1.6.0"
+    "node": "11.5.0",
+    "yarn": "1.12.3"
   },
   "scripts": {
     "build": "yarn --cwd client install && yarn --cwd client build",

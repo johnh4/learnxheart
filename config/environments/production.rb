@@ -91,4 +91,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # config.allowed_cors_origins = ['http://localhost:3000', 'http://localhost:3001']
+  config.allowed_cors_origins = [
+    'https://learnxheart.herokuapp.com',
+    'https://www.learnxheart.com',
+    'http://www.learnxheart.com',
+    'https://learnxheart.com',
+    'http://learnxheart.com',
+  ]
 end

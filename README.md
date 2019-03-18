@@ -1,24 +1,10 @@
-# README
+# Learn X Heart
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is Learn X Heart?
+Learn X Heart is spaced repetition software for classrooms. To learn more about spaced repetition and how it can help people learn, check out [this video](https://www.youtube.com/watch?v=cVf38y07cfk "Spaced repetition software video").
 
-Things you may want to cover:
+Beta invites will be available soon!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Stack
+- Back end: Ruby on Rails API
+- Front end: React (In [/client](/client/src))

@@ -18,7 +18,7 @@ function Logo({ classes }) {
   )
 }
 
-Logo.PropTypes = {
+Logo.propTypes = {
   classes: PropTypes.string
 }
 

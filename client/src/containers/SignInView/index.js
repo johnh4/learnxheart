@@ -10,7 +10,9 @@ import authentication from '../../images/authentication with beta.svg';
 
 export function SignInView({ signInRequest, userSignedIn }) {
   const autoSubmit = () => {
-    signInRequest('tyrell@example.net', 'password');
+    if(process.env.NODE_ENV === 'development') {
+      signInRequest('tyrell@example.net', 'password');
+    }
   }
 
   const handleSubmit = ({ email, password }, { setSubmitting }) => {

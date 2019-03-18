@@ -65,7 +65,7 @@ export class BrowseEducators extends React.Component {
   }
 
   render() {
-    const { educatorIds, match, educatorFilters } = this.props;
+    const { educatorIds, match } = this.props;
     const routes = {
       detail: <Route path={`${match.url}/:educatorId`} component={EducatorDetail} />,
       empty: <Route exact path={`${match.url}`} component={EducatorDetailEmpty} />

@@ -1,0 +1,34 @@
+@import '../../App/variables.scss';
+@import '../../App/colors.scss';
+
+.Footer {
+  padding: $page-side-padding;
+  background: $color-a-100;
+  display: flex;
+  justify-content: space-between;
+
+  color: white;
+  font-size: 13px;
+}
+
+.Footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.Footer__heart-icon {
+  color: $color-r-100;
+}
+.Footer__heart {
+  align-self: flex-end;
+}
+@media screen and (max-width: 767px) {
+  .Footer {
+    flex-direction: column;
+  }
+  .Footer__heart {
+    align-self: flex-start;
+    margin-top: 9px;
+  }
+}
+

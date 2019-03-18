@@ -1,0 +1,101 @@
+@import '../../App/variables.scss';
+@import '../../App/colors.scss';
+
+.Steps {
+  display: flex;
+  flex-direction: column;
+}
+.Step {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.Step__section {
+  margin: 0px 25px;
+}
+
+.Step__section:first-child {
+}
+.Step__alternate {
+  background: $color-a-10;
+  flex-direction: row-reverse;
+}
+
+.Step__illustration {
+}
+.Step__copy {
+  display: flex;
+  flex-direction: column;
+}
+.Step__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 0px $page-side-padding;
+  max-width: 952px;
+}
+.Step__section {
+}
+.Step__topline {
+  display: flex;
+  align-items: baseline;
+  color: $color-b-100;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+.Step__number {
+  display: inline-block;
+  color: white;
+  font-size: 12px;
+}
+.Step__circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-b-100;
+  border-radius: 20px;
+  height: 17px;
+  width: 17px;
+  margin-right: 9px;
+}
+.Step__stepText {
+}
+.Step__headline {
+  margin: 8px 0px;
+  color: $color-a-100;
+  font-size: 31px;
+  letter-spacing: 1.4px;
+}
+.Step__subheadline {
+  font-size: 13px;
+  font-weight: 400;
+  color: $color-n-40;
+}
+@media screen and (max-width: 767px) {
+  .Steps h1 {
+    font-size: 24px;
+  }
+  .Step__content {
+    flex-direction: column-reverse;
+    width: 100%;
+    max-width: 354px;
+    padding-left: $page-side-padding;
+    padding-right: $page-side-padding;
+  }
+  .LandingPageView__fold {
+  }
+  .Step__headline {
+    font-size: 24px;
+    margin: 20px 0px;
+  }
+  .Step__subheadline {
+    margin-bottom: 20px;
+    max-width: 400px;
+  }
+  .Step__illustration {
+    max-width: 90%;
+  }
+}

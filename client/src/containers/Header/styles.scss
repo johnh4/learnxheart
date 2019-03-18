@@ -1,0 +1,164 @@
+@import "../../components/App/variables.scss";
+@import "../../components/App/colors.scss";
+
+.Header {
+  display: flex;
+  justify-content: space-around;
+  font-size: 13px;
+  flex-direction: row;
+}
+.Header_dark, .Header_dark .Link {
+  color: $color-b-100;
+  font-weight: 600;
+}
+.Header_light, .Header_light .Link {
+  color: white;
+}
+.Header__brand {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: baseline;
+}
+.Header__brand-text {
+  font-weight: 600;
+  letter-spacing: 1.03;
+}
+.BrandIcon {
+}
+.Header__brand-icon {
+}
+
+.Header__nav {
+  margin: 0px;
+  padding: 0px;
+  flex-basis: 152px;
+  justify-content: space-between;
+}
+
+.Header__session {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  flex: 1 1 auto;
+}
+.Header__user-details {
+}
+.Header__icon {
+  margin-right: 15px;
+  position: relative;
+  top: 3px;
+  font-size: 15px;
+}
+.Header__user-name {
+  margin-right: 15px;
+}
+.Header__mobile-logo {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+}
+
+.Nav {
+  list-style: none;
+  display: flex;
+
+}
+.Nav__item {
+  justify-content: space-between;
+}
+.Nav__icon {
+  margin-right: 15px;
+}
+.Nav__link {}
+
+.Link {
+  text-decoration: none;
+  // color: white;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/**
+* Styles for the third-party react-burger-menu component
+* Used as mobile nav
+**/
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: absolute;
+  width: 21px;
+  height: 18px;
+  right: 30px;
+  top: 27px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  // background: #373a47;
+  background: $color-b-100;
+  height: 15% !important;
+  border-radius: 8px;
+}
+.bm-burger-bars:nth-of-type(1) {
+  left: 8px !important;
+}
+.bm-burger-bars:nth-of-type(3) {
+  right: 10px !important;
+}
+
+.bm-menu {
+  background: linear-gradient($color-b-100, $color-a-100) !important;
+  opacity: 0.97;
+  text-align: center;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+  right: 26px !important;
+  top: 24px !important;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: white;
+  height: 20px !important;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: rgba(10, 27, 73, 0.86);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-menu-wrap {
+  transition: none !important;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+  a {
+    padding: 0.8em;
+    color: white;
+  }
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}

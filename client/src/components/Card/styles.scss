@@ -1,0 +1,15 @@
+@import '../App/variables.scss';
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  border-radius: 27px;
+
+  font-size: 13px;
+  letter-spacing: 0.57px;
+
+  background-color: white;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+}

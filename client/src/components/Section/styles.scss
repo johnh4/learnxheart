@@ -1,0 +1,40 @@
+.Section {
+  display: flex;
+  flex-direction: column;
+}
+
+.Section__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.Section__header-title {
+  display: flex;
+  align-items: baseline;
+}
+.Section__header-brand {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background: linear-gradient(135deg, #DF6868, #8960DD);
+  border-radius: 2px;
+  box-shadow: 0px 1px 2px 1px rgba(155, 155, 155, 0.35);
+  margin-right: 13px;
+}
+.Section__header-text {
+  font-size: 17px;
+}
+
+@media screen and (max-width: 767px) {
+  .Section__header {
+    flex-direction: column;
+  }
+
+  .Section__header-title {
+    margin-top: 15px;
+  }
+  .Section__header-item {
+    order: -1;
+  }
+}

@@ -1,0 +1,70 @@
+@import '../App/variables.scss';
+
+.ViewHeader {
+  display: flex;
+  color: $dark-text-color;
+}
+
+.ViewHeader__icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 45px;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+.ViewHeader__main-icon {
+  display: flex;
+  font-size: 90px;
+  justify-content: center;
+  font-style: italic;
+}
+.ViewHeader__small-icon-group {
+  display: flex;
+  display: row;
+  justify-content: space-between;
+  font-size: 13px;
+  min-width: 92px;
+}
+.ViewHeader__small-icon-pair {
+  display: flex;
+  flex-direction: row;
+}
+.ViewHeader__small-icon {
+  margin-right: 6px;
+}
+
+
+
+
+.ViewHeader__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 148px;
+}
+
+.ViewHeader__title {
+  font-size: 31px;
+}
+
+.ViewHeader__divider {
+  height: 1px;
+  width: 68px;
+  background: rgba(10, 27, 73, 0.17);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ViewHeader__message {
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.ViewHeader__actions {
+  display: flex;
+}
+.ViewHeader__button {
+  margin-right: 23px;
+}

@@ -1,0 +1,30 @@
+@import '../../components/App/colors.scss';
+
+.CourseDetail {
+  // padding: 12px 23px 10px 23px;
+  padding: 30px 37px;
+}
+
+.CourseDetail__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.CourseDetail__educator-name {
+  color: $color-a-80;
+  font-weight: 600;
+}
+
+.CourseDetail__follow-button {
+  align-self: flex-end;
+  margin-bottom: 15px;
+}
+.CourseDetail__nameplate {
+}
+
+.CourseDetail__name {
+}
+
+.CourseDetail__description {
+}

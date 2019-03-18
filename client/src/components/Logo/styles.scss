@@ -1,0 +1,33 @@
+@import "../../components/App/colors.scss";
+
+.Logo {
+  display: flex;
+}
+.Logo__image {
+  margin-right: 4px;
+}
+.Logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 13px;
+  letter-spacing: -0.2px;
+}
+.Logo__top {
+  display:flex;
+  align-items: baseline;
+  color: white;
+}
+.Logo__learn {
+  font-size: 13px;
+  font-weight: 400;
+  margin-right: 1px;
+}
+.Logo__by {
+  font-size: 11px;
+  font-weight: 300;
+}
+.Logo__heart {
+  font-size: 16px;
+  font-weight: 800;
+  color: $color-r-100;
+}

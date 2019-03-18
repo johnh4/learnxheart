@@ -13,16 +13,10 @@ export default function Footer({ classes }) {
     <div className={`Footer ${classes}`}>
       <div className="Footer__attributions">
         <div>
-          Illustrations by&nbsp;
-          <a href="http://undraw.co" title="undraw.co">undraw.co</a>
-          &nbsp;and&nbsp;
-          <a href="http://www.humaaans.com" title="Humaaans">Humaaans</a>
+          Illustrations by <a href="http://undraw.co" title="undraw.co">undraw.co</a> and <a href="http://www.humaaans.com" title="Humaaans">Humaaans</a>
         </div>
         <div>
-          Icons made by&nbsp;
-          <a href="http://www.freepik.com" title="Freepik">Freepik</a>
-          &nbsp;from&nbsp;
-          <a href="http://www.flaticon.com" title="Freepik">Flaticon</a>
+          Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Freepik">Flaticon</a>
         </div>
       </div>
       <div className="Footer__heart">

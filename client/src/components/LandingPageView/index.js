@@ -32,7 +32,9 @@ function LandingPageView() {
           {/* Hero copy */}
           <div className="Hero__copy">
             <h1>Learning that lasts</h1>
-            <h6>Software that helps your students remember the right thing at the right time</h6>
+            <h6>
+              Software that helps your students remember the right thing at the right time
+            </h6>
             <Link to='/sign-in' className='Link LandingPageView__cta Hero__cta '>
                 GET STARTED <FontAwesomeIcon icon={faAngleRight} />
             </Link>

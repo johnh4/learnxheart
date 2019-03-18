@@ -245,15 +245,14 @@ function MobileHeader({
   function signedOutContent() {
     return (
       <Menu right width={'100%'} isOpen={menuOpen} className="Header__mobile">
-        <Logo classes={"Header__mobile-logo"} />
+        <Link to='/' className='Link menu-item' onClick={closeMenu}>
+          <Logo classes={"Header__mobile-logo"} />
+        </Link>
         <Link to='/' className='Link menu-item' onClick={closeMenu}>
           Home
         </Link>
         <Link to='/sign-in' className='Link Nav__link' onClick={closeMenu}>
           Sign In
-        </Link>
-        <Link to='/sign-up' className='Link Nav__link' onClick={closeMenu}>
-          Sign Up
         </Link>
       </Menu>
     )

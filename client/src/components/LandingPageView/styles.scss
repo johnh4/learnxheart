@@ -10,6 +10,10 @@
   padding-top: 82px;
 }
 
+.LandingPageView__fold {
+  display: flex;
+  justify-content: center;
+}
 .LandingPageView__logo-back {
   background: linear-gradient(270deg, $color-b-100, $color-a-100);
   width: 187px;
@@ -42,9 +46,9 @@
   display: flex;
 }
 .LandingPageView__hero {
-  display: flex;
   justify-content: space-between;
   padding: 0px $page-side-padding;
+  max-width: 900px;
 }
 .Hero__copy {
   display: flex;

@@ -15,20 +15,22 @@ export default function Step({
   const alternate = number % 2 === 0;
 
   return (
-    <div className={`Step ${alternate ? 'Step_alternate' : ''} ${classes}`}>
-      <img src={illustration} className="Step__illustration Step__section" alt={alt} />
-      <div className="Step__copy Step__section">
-        <div className="Step__topline">
-          <span className="Step__circle">
-            <div className="Step__number">{number}</div>
-          </span>
-          <span className="Step__stepText">{stepText}</span>
-        </div>
-        <div className="Step__headline">
-          {headline}
-        </div>
-        <div className="Step__subheadline">
-          {subheadline}
+    <div className={`Step ${alternate ? 'Step__alternate' : ''} ${classes}`}>
+      <div className={`Step__content ${alternate ? 'Step__alternate' : ''}`}>
+        <img src={illustration} className="Step__illustration Step__section" alt={alt} />
+        <div className="Step__copy Step__section">
+          <div className="Step__topline">
+            <span className="Step__circle">
+              <div className="Step__number">{number}</div>
+            </span>
+            <span className="Step__stepText">{stepText}</span>
+          </div>
+          <div className="Step__headline">
+            {headline}
+          </div>
+          <div className="Step__subheadline">
+            {subheadline}
+          </div>
         </div>
       </div>
     </div>

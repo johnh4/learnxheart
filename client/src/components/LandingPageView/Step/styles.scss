@@ -7,10 +7,8 @@
 }
 .Step {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding-left: $page-side-padding;
-  padding-right: $page-side-padding;
 }
 .Step__section {
   margin: 0px 25px;
@@ -18,7 +16,7 @@
 
 .Step__section:first-child {
 }
-.Step_alternate {
+.Step__alternate {
   background: $color-a-10;
   flex-direction: row-reverse;
 }
@@ -28,6 +26,14 @@
 .Step__copy {
   display: flex;
   flex-direction: column;
+}
+.Step__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 0px $page-side-padding;
+  max-width: 952px;
 }
 .Step__section {
 }
@@ -72,8 +78,12 @@
   .Steps h1 {
     font-size: 24px;
   }
-  .Step {
+  .Step__content {
     flex-direction: column-reverse;
+    width: 100%;
+    max-width: 354px;
+    padding-left: $page-side-padding;
+    padding-right: $page-side-padding;
   }
   .LandingPageView__fold {
   }
@@ -83,9 +93,9 @@
   }
   .Step__subheadline {
     margin-bottom: 20px;
+    max-width: 400px;
   }
   .Step__illustration {
     max-width: 90%;
   }
 }
-

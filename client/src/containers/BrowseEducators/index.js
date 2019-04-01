@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -17,70 +17,64 @@ import EducatorListItem from './EducatorListItem';
 import EducatorDetail from '../EducatorDetail';
 import EducatorDetailEmpty from './EducatorDetailEmpty';
 
-export class BrowseEducators extends React.Component {
-  constructor(props) {
-    super(props);
-    this.renderEducatorListItem = this.renderEducatorListItem.bind(this);
-    this.renderFilter = this.renderFilter.bind(this);
-    this.handleAddFilter = this.handleAddFilter.bind(this);
-    this.handleRemoveFilter = this.handleRemoveFilter.bind(this);
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.state = { filterInputText: '' }
-  }
+export function BrowseEducators({
+  educatorIds,
+  educatorFilters,
+  loadEducatorsRequest,
+  addEducatorFilter,
+  removeEducatorFilter,
+  match
+}) {
 
-  componentDidMount() {
-    this.props.loadEducatorsRequest();
-  }
+  const [filterInputText, setFilterInputText] = useState('');
 
-  renderEducatorListItem(educatorId) {
+  useEffect(()=> {
+    loadEducatorsRequest();
+  }, []);
+
+  function renderEducatorListItem(educatorId) {
     return <EducatorListItem educatorId={educatorId} />;
   }
 
-  renderFilter() {
-    const { educatorFilters } = this.props;
+  function renderFilter() {
     return <Filter
               classes="List__filter BrowseEducators__filter"
-              inputText={this.state.filterInputText}
+              inputText={filterInputText}
               placeholder="Filter educators"
-              handleAddFilter={this.handleAddFilter}
-              handleRemoveFilter={this.handleRemoveFilter}
-              handleFilterChange={this.handleFilterChange}
+              handleAddFilter={handleAddFilter}
+              handleRemoveFilter={handleRemoveFilter}
+              handleFilterChange={handleFilterChange}
               activeFilters={educatorFilters}
             />;
   }
 
-  handleAddFilter() {
-    const { addEducatorFilter } = this.props;
-    addEducatorFilter(this.state.filterInputText);
-    this.setState(() => ({ filterInputText: '' }));
+  function handleAddFilter() {
+    addEducatorFilter(filterInputText);
+    setFilterInputText('');
   }
 
-  handleRemoveFilter(filter) {
-    const { removeEducatorFilter } = this.props;
+  function handleRemoveFilter(filter) {
     removeEducatorFilter(filter);
   }
 
-  handleFilterChange(text) {
-    this.setState(() => ({ filterInputText: text }));
+  function handleFilterChange(text) {
+    setFilterInputText(text);
   }
 
-  render() {
-    const { educatorIds, match } = this.props;
-    const routes = {
-      detail: <Route path={`${match.url}/:educatorId`} component={EducatorDetail} />,
-      empty: <Route exact path={`${match.url}`} component={EducatorDetailEmpty} />
-    };
+  const routes = {
+    detail: <Route path={`${match.url}/:educatorId`} component={EducatorDetail} />,
+    empty: <Route exact path={`${match.url}`} component={EducatorDetailEmpty} />
+  };
 
-    return (
-      <BrowsableIndex
-        dataTestId="browse-educators"
-        itemIds={educatorIds}
-        renderListItem={this.renderEducatorListItem}
-        routes={routes}
-        renderFilter={this.renderFilter}
-      />
-    )
-  }
+  return (
+    <BrowsableIndex
+      dataTestId="browse-educators"
+      itemIds={educatorIds}
+      renderListItem={renderEducatorListItem}
+      routes={routes}
+      renderFilter={renderFilter}
+    />
+  )
 }
 
 BrowseEducators.propTypes = {

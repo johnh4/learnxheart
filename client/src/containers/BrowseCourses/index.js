@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -17,70 +17,64 @@ import CourseListItem from './CourseListItem';
 import CourseDetail from '../CourseDetail';
 import CourseDetailEmpty from './CourseDetailEmpty';
 
-export class BrowseCourses extends React.Component {
-  constructor(props) {
-    super(props);
-    this.renderCourseListItem = this.renderCourseListItem.bind(this);
-    this.renderFilter = this.renderFilter.bind(this);
-    this.handleAddFilter = this.handleAddFilter.bind(this);
-    this.handleRemoveFilter = this.handleRemoveFilter.bind(this);
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.state = { filterInputText: '' }
-  }
+export function BrowseCourses({
+  courseIds,
+  courseFilters,
+  loadCoursesRequest,
+  addCourseFilter,
+  removeCourseFilter,
+  match
+}) {
 
-  componentDidMount() {
-    this.props.loadCoursesRequest();
-  }
+  const [filterInputText, setFilterInputText] = useState('');
 
-  renderCourseListItem(courseId) {
+  useEffect(() => {
+    loadCoursesRequest();
+  }, []);
+
+  function renderCourseListItem(courseId) {
     return <CourseListItem courseId={courseId} />;
-  }
+  };
 
-  renderFilter() {
-    const { courseFilters } = this.props;
+  function renderFilter() {
     return <Filter
               classes="List__filter BrowseCourses__filter"
-              inputText={this.state.filterInputText}
+              inputText={filterInputText}
               placeholder="Filter courses"
-              handleAddFilter={this.handleAddFilter}
-              handleRemoveFilter={this.handleRemoveFilter}
-              handleFilterChange={this.handleFilterChange}
+              handleAddFilter={handleAddFilter}
+              handleRemoveFilter={handleRemoveFilter}
+              handleFilterChange={handleFilterChange}
               activeFilters={courseFilters}
             />;
   }
 
-  handleAddFilter() {
-    const { addCourseFilter } = this.props;
-    addCourseFilter(this.state.filterInputText);
-    this.setState(() => ({ filterInputText: '' }));
+  function handleAddFilter() {
+    addCourseFilter(filterInputText);
+    setFilterInputText('');
   }
 
-  handleRemoveFilter(filter) {
-    const { removeCourseFilter } = this.props;
+  function handleRemoveFilter(filter) {
     removeCourseFilter(filter);
   }
 
-  handleFilterChange(text) {
-    this.setState(() => ({ filterInputText: text }));
+  function handleFilterChange(text) {
+    setFilterInputText(text);
   }
 
-  render() {
-    const { courseIds, match } = this.props;
-    const routes = {
-      detail: <Route path={`${match.url}/:courseId`} component={CourseDetail} />,
-      empty: <Route exact path={`${match.url}`} component={CourseDetailEmpty} />
-    };
+  const routes = {
+    detail: <Route path={`${match.url}/:courseId`} component={CourseDetail} />,
+    empty: <Route exact path={`${match.url}`} component={CourseDetailEmpty} />
+  };
 
-    return (
-      <BrowsableIndex
-        dataTestId="browse-courses"
-        itemIds={courseIds}
-        renderListItem={this.renderCourseListItem}
-        routes={routes}
-        renderFilter={this.renderFilter}
-      />
-    )
-  }
+  return (
+    <BrowsableIndex
+      dataTestId="browse-courses"
+      itemIds={courseIds}
+      renderListItem={renderCourseListItem}
+      routes={routes}
+      renderFilter={renderFilter}
+    />
+  )
 }
 
 BrowseCourses.propTypes = {

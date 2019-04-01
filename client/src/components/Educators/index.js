@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectThing, toggleSelect } from '../../reducers/views';
 import { loadEducatorsRequest, loadEducatorRequest } from '../../actions/educators';
@@ -6,39 +6,46 @@ import { signInRequest, signOutRequest } from '../../actions/sessions';
 import { getEducators, getEducatorIds } from '../../reducers/educators';
 import { currentUser, userSignedIn } from '../../selectors/sessions';
 
-class Educators extends Component {
-  componentDidMount() {
-    this.getEducators();
+function Educators({
+  loadEducatorsRequest,
+  loadEducatorRequest,
+  educatorIds,
+  educators,
+  signInRequest,
+  currentUser,
+  userSignedIn,
+  signOutRequest,
+}) {
+
+  useEffect(() => {
+    getEducators();
+  }, []);
+
+  const handleGetEducators = () => {
+    getEducators();
   }
 
-  handleGetEducators = () => {
-    this.getEducators();
+  const handleGetEducator = () => {
+    getEducator("1");
   }
 
-  handleGetEducator = () => {
-    this.getEducator("1");
+  const handleSignIn = () => {
+    signInRequest("jehowl4+educator@gmail.com", "password");
   }
 
-  handleSignIn = () => {
-    this.props.signInRequest("jehowl4+educator@gmail.com", "password");
-  }
-
-  handleSignOut = () => {
-    const { currentUser, signOutRequest } = this.props;
+  const handleSignOut = () => {
     signOutRequest(currentUser);
   }
 
-  async getEducators() {
-    this.props.loadEducatorsRequest();
+  function getEducators() {
+    loadEducatorsRequest();
   }
 
-  async getEducator(educatorId) {
-    this.props.loadEducatorRequest(educatorId);
+  function getEducator(educatorId) {
+    loadEducatorRequest(educatorId);
   }
 
-  renderEducators() {
-    const { educatorIds, educators } = this.props;
-
+  function renderEducators() {
     return (
       <div>
         Educator count: {educators.length}
@@ -61,44 +68,40 @@ class Educators extends Component {
     )
   }
 
-  render() {
-    const { educatorIds, currentUser, userSignedIn } = this.props;
-
-    return (
-      <div data-testid="educators-view">
-        <div onClick={this.handleSignIn}>
-          { !userSignedIn &&
-            <span>Sign in</span>
-          }
-        </div>
-        <div>
-          { userSignedIn &&
-            <span onClick={this.handleSignOut}>Sign Out</span>
-          }
-        </div>
-        <div>
-          { !userSignedIn
-              ? <div>Not signed in.</div>
-              : <div>
-                  Signed in as {`${currentUser.firstName} ${currentUser.lastName}`}.
-                </div>
-          }
-        </div>
-        <div onClick={this.handleGetEducators}>
-          Get Educators
-        </div>
-        <div onClick={this.handleGetEducator}>
-          Get Educator 1
-        </div>
-        <div>
-          { educatorIds.length > 0
-            ? this.renderEducators()
-            : <div>There aren't any Educators yet.</div>
-          }
-        </div>
+  return (
+    <div data-testid="educators-view">
+      <div onClick={handleSignIn}>
+        { !userSignedIn &&
+          <span>Sign in</span>
+        }
       </div>
-    );
-  }
+      <div>
+        { userSignedIn &&
+          <span onClick={handleSignOut}>Sign Out</span>
+        }
+      </div>
+      <div>
+        { !userSignedIn
+            ? <div>Not signed in.</div>
+            : <div>
+                Signed in as {`${currentUser.firstName} ${currentUser.lastName}`}.
+              </div>
+        }
+      </div>
+      <div onClick={handleGetEducators}>
+        Get Educators
+      </div>
+      <div onClick={handleGetEducator}>
+        Get Educator 1
+      </div>
+      <div>
+        { educatorIds.length > 0
+          ? renderEducators()
+          : <div>There aren't any Educators yet.</div>
+        }
+      </div>
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => ({

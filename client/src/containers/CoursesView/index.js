@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 import { connect } from 'react-redux';
@@ -21,30 +21,29 @@ import {
   selectFilteredCoursesCurrentStudentIsFollowing
 } from '../../selectors/views';
 
-export class CoursesView extends React.Component {
-  componentDidMount() {
-    this.props.loadCoursesRequest();
-  }
+function CoursesView(props) {
+  const {
+    courseIds,
+    tab,
+    addCourseFilter,
+    removeCourseFilter,
+    courseFilters,
+    loadCoursesRequest
+  } = props;
 
-  render() {
-    const {
-      courseIds,
-      tab,
-      addCourseFilter,
-      removeCourseFilter,
-      courseFilters
-    } = this.props;
+  useEffect(() => {
+    loadCoursesRequest();
+  });
 
-    return (
-      <CoursesViewComponent
-        courseIds={courseIds}
-        tab={tab}
-        addCourseFilter={addCourseFilter}
-        removeCourseFilter={removeCourseFilter}
-        courseFilters={courseFilters}
-      />
-    )
-  }
+  return (
+    <CoursesViewComponent
+      courseIds={courseIds}
+      tab={tab}
+      addCourseFilter={addCourseFilter}
+      removeCourseFilter={removeCourseFilter}
+      courseFilters={courseFilters}
+    />
+  )
 }
 
 CoursesView.propTypes = {

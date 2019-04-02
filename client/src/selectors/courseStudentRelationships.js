@@ -22,10 +22,9 @@ export const selectCsrIdFromCourseAndStudentIds = createSelector(
   currentStudent,
   (_, props) => props.courseId,
   (csrs, student, courseId) => {
-    // return 1;
     const csr = find(
       csrs,
-      csr => !!csr && csr.courseId === courseId && csr.studentId === student.id
+      csr => !!csr && csr.courseId === Number(courseId) && csr.studentId === student.id
     );
     if(!!csr) {
       return csr.id;

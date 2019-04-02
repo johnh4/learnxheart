@@ -33,7 +33,7 @@ function CoursesView(props) {
 
   useEffect(() => {
     loadCoursesRequest();
-  });
+  }, []);
 
   return (
     <CoursesViewComponent

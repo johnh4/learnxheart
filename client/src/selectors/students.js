@@ -51,7 +51,7 @@ export const selectCoursesCurrentStudentIsNotFollowing = createSelector(
 export const selectStudentIsFollowingCourse = createSelector(
   selectCourseStudentRelationships,
   currentStudent,
-  (_, { courseId }) => courseId,
+  (_, { courseId }) => Number(courseId),
   (courseStudentRelationships, student, courseId) => {
     if (student) {
       return some(

@@ -27,7 +27,7 @@ export function CourseListItem({
       dataTestId={`course-list-item-${course.id}`}
     >
       <NavLink
-        to={`/browse/courses/${course.id}`}
+        to={`${match.url}/${course.id}`}
         className="CourseListItem__course-name"
       >
         {course.name}

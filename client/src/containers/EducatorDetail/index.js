@@ -94,9 +94,7 @@ export function EducatorDetail({
       dataTestId={`educator-detail-${educator.id}`}
     >
       <div className="EducatorDetail__header">
-        <div className="EducatorDetail__educator-name">
-          by {educatorName}
-        </div>
+        <div></div>
         {renderCorrectButton()}
       </div>
       <div className="Nameplate">

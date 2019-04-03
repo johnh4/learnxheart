@@ -3,5 +3,6 @@ class EducatorSerializer < ActiveModel::Serializer
              :created_at, :updated_at
   attribute :token, if: -> { instance_options[:show_token] }
 
+  has_many :educator_student_relationships
   has_many :courses
 end

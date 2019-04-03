@@ -6,6 +6,10 @@ import {
   watchCreateCourseStudentRelationshipSaga,
   watchDestroyCourseStudentRelationshipSaga
 } from './courseStudentRelationships';
+import {
+  watchCreateEducatorStudentRelationshipSaga,
+  watchDestroyEducatorStudentRelationshipSaga
+} from './educatorStudentRelationships';
 
 export default function* rootSaga() {
   yield all([
@@ -16,6 +20,8 @@ export default function* rootSaga() {
     fork(watchSignInSaga),
     fork(watchSignOutSaga),
     fork(watchCreateCourseStudentRelationshipSaga),
-    fork(watchDestroyCourseStudentRelationshipSaga)
+    fork(watchDestroyCourseStudentRelationshipSaga),
+    fork(watchCreateEducatorStudentRelationshipSaga),
+    fork(watchDestroyEducatorStudentRelationshipSaga)
   ])
 }

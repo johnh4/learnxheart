@@ -43,6 +43,7 @@ export function* loadEducatorsFlow() {
   try {
     const response = yield call(getEducators);
     const entities = response.entities;
+    // entities will contain both educators and educatorStudentRelationships
     yield put(actions.loadEducatorsSuccess(entities));
   } catch (error) {
     yield put(apiError(error));

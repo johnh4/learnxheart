@@ -220,9 +220,11 @@ export const educatorSchema = new schema.Entity('educators');
 export const studentSchema = new schema.Entity('students');
 export const courseSchema = new schema.Entity('courses');
 export const courseStudentRelationshipsSchema = new schema.Entity('courseStudentRelationships');
+export const educatorStudentRelationshipsSchema = new schema.Entity('educatorStudentRelationships');
 
 educatorSchema.define({
-  courses: [courseSchema]
+  courses: [courseSchema],
+  educatorStudentRelationships: [educatorStudentRelationshipsSchema]
 });
 
 courseSchema.define({

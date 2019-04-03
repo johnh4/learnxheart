@@ -8,7 +8,18 @@ import {
 import {
   selectCourseIdsByEducatorIdProp
 } from '../../selectors/courses';
+import {
+  selectStudentIsFollowingEducator
+} from '../../selectors/students';
+import {
+  createEducatorStudentRelationshipRequest,
+  destroyEducatorStudentRelationshipRequest
+} from '../../actions/educatorStudentRelationships';
+import {
+  selectEsrIdFromEducatorAndStudentIds
+} from '../../selectors/educatorStudentRelationships';
 import { loadEducatorRequest } from '../../actions/educators';
+import { currentUser } from '../../selectors/sessions';
 import DetailCard from '../../components/DetailCard';
 import CourseListItem from '../../containers/BrowseCourses/CourseListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,12 +30,61 @@ export function EducatorDetail({
   educator,
   courseIds,
   loadEducatorRequest,
+  currentUser,
+  createEducatorStudentRelationshipRequest,
+  destroyEducatorStudentRelationshipRequest,
+  educatorStudentRelationshipId,
+  following,
   match: { params: { educatorId } }
 }) {
 
   useEffect(() => {
     loadEducatorRequest(educatorId);
   }, [educatorId]);
+
+  function handleFollow() {
+    const esr = { educatorId: educator.id, studentId: currentUser.id }
+    createEducatorStudentRelationshipRequest(esr);
+  }
+
+  function handleUnfollow() {
+    destroyEducatorStudentRelationshipRequest(
+      educatorStudentRelationshipId
+    );
+  }
+
+  function renderFollowButton() {
+    return (
+      <div
+        className="EducatorDetail__follow-button LightButton"
+        onClick={handleFollow}
+      >
+        <FontAwesomeIcon icon={faPlus} className="LightButton__icon"/>
+        <span className="LightButton__text">FOLLOW</span>
+      </div>
+    )
+  }
+
+  function renderUnfollowButton() {
+    return (
+      <div
+        className="EducatorDetail__follow-button LightButton"
+        onClick={handleUnfollow}
+      >
+        <FontAwesomeIcon icon={faPlus} className="LightButton__icon"/>
+        <span className="LightButton__text">FOLLOWING</span>
+      </div>
+    )
+  }
+
+  function renderCorrectButton() {
+    if (following) {
+      return renderUnfollowButton();
+    } else {
+      return renderFollowButton();
+    }
+  }
+
 
   const educatorName = `${educator.firstName} ${educator.lastName}`;
 
@@ -34,13 +94,8 @@ export function EducatorDetail({
       dataTestId={`educator-detail-${educator.id}`}
     >
       <div className="EducatorDetail__header">
-        <div className="EducatorDetail__educator-name">
-          by {educatorName}
-        </div>
-        <div className="EducatorDetail__follow-button LightButton">
-          <FontAwesomeIcon icon={faPlus} className="LightButton__icon"/>
-          <span className="LightButton__text">FOLLOW</span>
-        </div>
+        <div></div>
+        {renderCorrectButton()}
       </div>
       <div className="Nameplate">
         <div className="EducatorDetail__name DetailCard__name">
@@ -89,22 +144,44 @@ export function EducatorDetail({
 
 const mapStateToProps = (state, ownProps) => ({
   educator: selectEducatorByEducatorIdProp(state, ownProps.match.params),
-  courseIds: selectCourseIdsByEducatorIdProp(state, ownProps.match.params)
+  courseIds: selectCourseIdsByEducatorIdProp(state, ownProps.match.params),
+  currentUser: currentUser(state),
+  educatorStudentRelationshipId: selectEsrIdFromEducatorAndStudentIds(
+    state,
+    ownProps.match.params
+  ),
+  following: selectStudentIsFollowingEducator(
+    state,
+    ownProps.match.params
+  ),
 });
+
+const mapDispatchToProps = {
+  createEducatorStudentRelationshipRequest,
+  destroyEducatorStudentRelationshipRequest,
+  loadEducatorRequest
+}
 
 EducatorDetail.propTypes = {
   educator: PropTypes.object,
   courseIds: PropTypes.arrayOf(PropTypes.number),
-  loadEducatorRequest: PropTypes.func
+  currentUser: PropTypes.object,
+  loadEducatorRequest: PropTypes.func,
+  educatorStudentRelationshipId: PropTypes.number,
+  following: PropTypes.bool
 }
 
 EducatorDetail.defaultProps = {
   educator: {},
   courseIds: [],
-  loadEducatorRequest: () => {}
+  currentUser: null,
+  loadEducatorRequest: () => {},
+  createEducatorStudentRelationshipRequest: () => {},
+  destroyEducatorStudentRelationshipRequest: () => {},
+  following: false,
 }
 
 export default connect(
   mapStateToProps,
-  { loadEducatorRequest }
+  mapDispatchToProps
 )(EducatorDetail);

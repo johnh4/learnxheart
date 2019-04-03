@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :decks, only: [:index, :create, :show, :update]
     resources :cards, only: [:index, :create, :show, :update]
     resources :course_student_relationships, only: [:index, :create, :destroy]
+    resources :educator_student_relationships, only: [:index, :create, :destroy]
   end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
